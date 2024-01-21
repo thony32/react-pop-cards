@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import "./index.css"
-import App from "./App"
+import Card from './components/Card';
 
 const array = ["Un","Deux","Trois","Quatre"]
 
@@ -12,4 +12,4 @@ ReactDOM.render(
     document.getElementById("root")
 )
 
-export { App }
+export { Card }
