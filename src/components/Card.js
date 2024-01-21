@@ -5,19 +5,19 @@ import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
 
-const Card = () => {
+const Card = ({ data }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
-
+    
     // Define card states
     const initialCardDimensions = { width: "6rem", height: "6rem" }
-    const [cards, setCards] = useState({
-        feu: initialCardDimensions,
-        water: initialCardDimensions,
-        wind: initialCardDimensions,
-        quake: initialCardDimensions,
-    })
+    const convertedObject = data.reduce((acc, currentValue) => {
+        acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
+        return acc;
+    }, {});
+
+    const [cards, setCards] = useState(convertedObject)
 
     const [activeCard, setActiveCard] = useState("feu")
 
