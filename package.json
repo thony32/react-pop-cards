@@ -1,9 +1,14 @@
 {
   "name": "rajoelina-js",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "dist/index.js",
   "module": "dist/index.js",
-  "keywords": ["cyri", "anthony", "card" , "react" , "use-spring" , "tailwind"],
+  "keywords": [
+    "card",
+    "react",
+    "use-spring",
+    "tailwind"
+  ],
   "files": [
     "dist",
     "README.md"
@@ -20,6 +25,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "D": "^1.0.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive": "^9.0.2",

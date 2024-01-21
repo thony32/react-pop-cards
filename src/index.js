@@ -1,15 +1,15 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom/client"
 import "./index.css"
 import Card from './components/Card';
 
 const array = ["Un","Deux","Trois","Quatre"]
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Card data={array} bgColor="bg-red-500"/>
+        <Card data={array} bgColor={""}/>
     </React.StrictMode>,
-    document.getElementById("root")
+    
 )
 
 export { Card }

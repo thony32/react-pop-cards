@@ -4,18 +4,21 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
+import PropTypes from "prop-types"
 
 const Card = ({ data, bgColor }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
-    
+
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
+
     const convertedObject = data.reduce((acc, currentValue) => {
-        acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
-        return acc;
-    }, {});
+        acc[currentValue.toLowerCase()] = { ...initialCardDimensions }
+        return acc
+    }, {})
+
     const [cards, setCards] = useState(convertedObject)
 
     // active card
@@ -45,7 +48,6 @@ const Card = ({ data, bgColor }) => {
         })
         return acc
     }, {})
-
 
     const getCardClasses = (key) => {
         switch (key) {
@@ -101,6 +103,11 @@ const Card = ({ data, bgColor }) => {
             </div>
         </div>
     )
+}
+
+Card.propTypes = {
+    data: PropTypes.array.isRequired,
+    bgColor: PropTypes.string.isRequired,
 }
 
 export default Card
