@@ -5,7 +5,7 @@ import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
 
-const Card = () => {
+const Card = ({ bgColor }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
@@ -46,6 +46,7 @@ const Card = () => {
         return acc
     }, {})
 
+
     const getCardClasses = (key) => {
         switch (key) {
             case 0:
@@ -71,7 +72,7 @@ const Card = () => {
                                 ref={activeCard === cardKey ? activeCardRef : null}
                                 style={animatedStyles[cardKey]}
                                 onClick={() => handleCardClick(cardKey)}
-                                className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-400"}
+                                className={`${activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl"} cursor-pointer ${bgColor}`}
                             >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
