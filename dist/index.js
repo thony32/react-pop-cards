@@ -3,11 +3,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "Button", {
+Object.defineProperty(exports, "Card", {
   enumerable: true,
   get: function get() {
-    return _Button.default;
+    return _Card.default;
   }
 });
-var _Button = _interopRequireDefault(require("./components/Button"));
+var _Card = _interopRequireDefault(require("./components/Card"));
+require("./index.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
