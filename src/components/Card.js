@@ -71,7 +71,7 @@ const Card = () => {
                                 ref={activeCard === cardKey ? activeCardRef : null}
                                 style={animatedStyles[cardKey]}
                                 onClick={() => handleCardClick(cardKey)}
-                                className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-500"}
+                                className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-400"}
                             >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
