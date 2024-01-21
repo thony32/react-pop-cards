@@ -60,32 +60,31 @@ const Card = () => {
                 return ""
         }
     }
-    
+
     return (
         <div className="grid grid-cols-5 h-screen">
             <div className="col-span-3 flex justify-center items-center">
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(cards).map((cardKey, key) => (
                         <div key={cardKey} className={getCardClasses(key)} ref={parentCard}>
-                            <animated.div ref={activeCard === cardKey ? activeCardRef : null} style={animatedStyles[cardKey] } onClick={() => handleCardClick(cardKey)} className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-500"}>
+                            <animated.div
+                                ref={activeCard === cardKey ? activeCardRef : null}
+                                style={animatedStyles[cardKey]}
+                                onClick={() => handleCardClick(cardKey)}
+                                className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-500"}
+                            >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
                                         <label className={(activeCard === cardKey ? "text-5xl" : "text-base") + " capitalize font-bold duration-500"}>{cardKey}</label>
-                                        {activeCard === cardKey
-                                            &&
-                                            <div className="w-20 h-20 text-center bg-green-500">
-                                                Icon or image here
-                                            </div>
-                                        }
+                                        {activeCard === cardKey && <div className="w-20 h-20 text-center bg-green-500">Icon or image here</div>}
                                     </div>
                                     {/* description here */}
-                                    {activeCard === cardKey
-                                        &&
+                                    {activeCard === cardKey && (
                                         <p className="line-clamp-[8] text-justify">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt possimus assumenda sequi nihil, pariatur, aliquid molestias harum aliquam aut eum incidunt, amet accusantium numquam reiciendis. Dicta architecto quibusdam aspernatur laborum.
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quasi ipsum fuga ex harum reprehenderit, tempora a alias nisi dignissimos inventore quia eum modi molestiae perspiciatis ducimus optio minus nostrum.
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt possimus assumenda sequi nihil, pariatur, aliquid molestias harum aliquam aut eum incidunt, amet accusantium numquam reiciendis. Dicta architecto quibusdam aspernatur laborum. Lorem ipsum
+                                            dolor sit amet consectetur adipisicing elit. Explicabo quasi ipsum fuga ex harum reprehenderit, tempora a alias nisi dignissimos inventore quia eum modi molestiae perspiciatis ducimus optio minus nostrum.
                                         </p>
-                                    }
+                                    )}
                                 </div>
                             </animated.div>
                         </div>

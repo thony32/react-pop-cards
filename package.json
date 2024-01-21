@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files",
+    "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && postcss src/index.css -o dist/index.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -53,6 +53,8 @@
   "devDependencies": {
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.8"
+    "@babel/preset-env": "^7.23.8",
+    "autoprefixer": "^10.4.17",
+    "postcss-cli": "^11.0.0"
   }
 }
