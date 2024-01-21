@@ -5,21 +5,21 @@ import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
 
-const Card = () => {
+const Card = ({ data, bgColor }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
-
-    // Define card states
+    
+    // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
-    const [cards, setCards] = useState({
-        feu: initialCardDimensions,
-        water: initialCardDimensions,
-        wind: initialCardDimensions,
-        quake: initialCardDimensions,
-    })
+    const convertedObject = data.reduce((acc, currentValue) => {
+        acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
+        return acc;
+    }, {});
+    const [cards, setCards] = useState(convertedObject)
 
-    const [activeCard, setActiveCard] = useState("feu")
+    // active card
+    const [activeCard, setActiveCard] = useState(data[0])
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
@@ -46,6 +46,7 @@ const Card = () => {
         return acc
     }, {})
 
+
     const getCardClasses = (key) => {
         switch (key) {
             case 0:
@@ -71,7 +72,7 @@ const Card = () => {
                                 ref={activeCard === cardKey ? activeCardRef : null}
                                 style={animatedStyles[cardKey]}
                                 onClick={() => handleCardClick(cardKey)}
-                                className={(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl") + " cursor-pointer bg-blue-500"}
+                                className={`${activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl"} cursor-pointer ${bgColor}`}
                             >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
