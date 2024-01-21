@@ -10,16 +10,16 @@ const Card = ({ data }) => {
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
     
-    // Define card states
+    // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
     const convertedObject = data.reduce((acc, currentValue) => {
         acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
         return acc;
     }, {});
-
     const [cards, setCards] = useState(convertedObject)
 
-    const [activeCard, setActiveCard] = useState("feu")
+    // active card
+    const [activeCard, setActiveCard] = useState(data[0])
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
