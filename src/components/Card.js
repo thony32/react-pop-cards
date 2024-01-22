@@ -6,14 +6,15 @@ import { useMediaQuery } from "react-responsive"
 import "../index.css"
 import PropTypes from "prop-types"
 
-const Card = ({ data, bgColor, disposition }) => {
+const Card = ({ data, bgColor, disposition, isRounded }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
 
     // default content div classes
-    const cardClass = "col-span-3 flex justify-center items-center";
-    const miniCardClass = "col-span-2 gap-4 flex justify-center items-center";
+    const cardDivClass = "col-span-3 flex justify-center items-center";
+    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center";
+    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md";
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
@@ -70,7 +71,7 @@ const Card = ({ data, bgColor, disposition }) => {
 
     return (
         <div className="grid grid-cols-5 h-screen">
-            <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` ${cardClass}`}>
+            <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` ${cardDivClass}`}>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(cards).map((cardKey, key) => (
                         <div key={cardKey} className={getCardClasses(key)} ref={parentCard}>
@@ -78,7 +79,7 @@ const Card = ({ data, bgColor, disposition }) => {
                                 ref={activeCard === cardKey ? activeCardRef : null}
                                 style={animatedStyles[cardKey]}
                                 onClick={() => handleCardClick(cardKey)}
-                                className={`${activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl"} cursor-pointer ${bgColor}`}
+                                className={`${activeCard === cardKey ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer ${bgColor} ${isRounded ? " rounded-2xl" : " rounded-none"}`}
                             >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
@@ -98,9 +99,9 @@ const Card = ({ data, bgColor, disposition }) => {
                     ))}
                 </div>
             </div>
-            <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` ${miniCardClass}`}>
+            <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` ${miniCardDivClass}`}>
                 {Object.keys(cards).map((cardKey) => (
-                    <div key={cardKey} onClick={() => handleCardClick(cardKey)} className={(activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90") + " hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md rounded-2xl"}>
+                    <div key={cardKey} onClick={() => handleCardClick(cardKey)} className={`${activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90"} ${miniCardClass} ${isRounded ? "rounded-2xl" : "rounded-none"}`}>
                         <label className="text-center text-xs capitalize">{cardKey}</label>
                     </div>
                 ))}
@@ -116,6 +117,7 @@ Card.propTypes = {
 Card.defaultProps = {
     disposition: 'LeftRight',
     bgColor: 'bg-gray-200',
+    isRounded : false
 };
 
 export default Card
