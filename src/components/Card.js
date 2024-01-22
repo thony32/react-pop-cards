@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive"
 import "../index.css"
 import PropTypes from "prop-types"
 
-const Card = ({ data, bgColor }) => {
+const Card = ({ data, bgColor, disposition }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
@@ -66,7 +66,7 @@ const Card = ({ data, bgColor }) => {
 
     return (
         <div className="grid grid-cols-5 h-screen">
-            <div className="col-span-3 flex justify-center items-center">
+            <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` col-span-3 flex justify-center items-center`}>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(cards).map((cardKey, key) => (
                         <div key={cardKey} className={getCardClasses(key)} ref={parentCard}>
@@ -94,7 +94,7 @@ const Card = ({ data, bgColor }) => {
                     ))}
                 </div>
             </div>
-            <div className="col-span-2 gap-4 flex justify-center items-center">
+            <div className={(disposition === "RightLeft" ? "order-2" : "order-1") + ` col-span-2 gap-4 flex justify-center items-center`}>
                 {Object.keys(cards).map((cardKey) => (
                     <div key={cardKey} onClick={() => handleCardClick(cardKey)} className={(activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90") + " hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md rounded-2xl"}>
                         <label className="text-center text-xs capitalize">{cardKey}</label>
@@ -107,7 +107,11 @@ const Card = ({ data, bgColor }) => {
 
 Card.propTypes = {
     data: PropTypes.array.isRequired,
-    bgColor: PropTypes.string.isRequired,
 }
+
+Card.defaultProps = {
+    disposition: 'LeftRight',
+    bgColor: 'bg-gray-200',
+};
 
 export default Card
