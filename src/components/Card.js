@@ -11,6 +11,10 @@ const Card = ({ data, bgColor, disposition }) => {
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
 
+    // default content div classes
+    const cardClass = "col-span-3 flex justify-center items-center";
+    const miniCardClass = "col-span-2 gap-4 flex justify-center items-center";
+
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
 
@@ -22,7 +26,7 @@ const Card = ({ data, bgColor, disposition }) => {
     const [cards, setCards] = useState(convertedObject)
 
     // active card
-    const [activeCard, setActiveCard] = useState(data[0])
+    const [activeCard, setActiveCard] = useState(data[0].toLowerCase())
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
@@ -38,7 +42,6 @@ const Card = ({ data, bgColor, disposition }) => {
     // Update active card ref
     useEffect(() => {
         handleCardClick(activeCard)
-        console.log(disposition);
     }, [activeCard])
 
     // Animated styles for each card
@@ -67,7 +70,7 @@ const Card = ({ data, bgColor, disposition }) => {
 
     return (
         <div className="grid grid-cols-5 h-screen">
-            <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` col-span-3 flex justify-center items-center`}>
+            <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` ${cardClass}`}>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(cards).map((cardKey, key) => (
                         <div key={cardKey} className={getCardClasses(key)} ref={parentCard}>
@@ -95,7 +98,7 @@ const Card = ({ data, bgColor, disposition }) => {
                     ))}
                 </div>
             </div>
-            <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` col-span-2 gap-4 flex justify-center items-center`}>
+            <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` ${miniCardClass}`}>
                 {Object.keys(cards).map((cardKey) => (
                     <div key={cardKey} onClick={() => handleCardClick(cardKey)} className={(activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90") + " hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md rounded-2xl"}>
                         <label className="text-center text-xs capitalize">{cardKey}</label>
