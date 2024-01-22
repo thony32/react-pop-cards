@@ -9,7 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Card data={array} bgColor={""}/>
     </React.StrictMode>,
-    
 )
 
 export { Card }
