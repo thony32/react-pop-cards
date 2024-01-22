@@ -38,6 +38,7 @@ const Card = ({ data, bgColor, disposition }) => {
     // Update active card ref
     useEffect(() => {
         handleCardClick(activeCard)
+        console.log(disposition);
     }, [activeCard])
 
     // Animated styles for each card
@@ -94,7 +95,7 @@ const Card = ({ data, bgColor, disposition }) => {
                     ))}
                 </div>
             </div>
-            <div className={(disposition === "RightLeft" ? "order-2" : "order-1") + ` col-span-2 gap-4 flex justify-center items-center`}>
+            <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` col-span-2 gap-4 flex justify-center items-center`}>
                 {Object.keys(cards).map((cardKey) => (
                     <div key={cardKey} onClick={() => handleCardClick(cardKey)} className={(activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90") + " hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md rounded-2xl"}>
                         <label className="text-center text-xs capitalize">{cardKey}</label>
