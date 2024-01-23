@@ -7,7 +7,7 @@ const array = ["Un", "Deux", "Trois", "Quatre"]
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Card data={array} isRounded={true} disposition="BottomTop" />
+        <Card data={array} isRounded={true} disposition="LeftRight" />
     </React.StrictMode>,
 )
 
