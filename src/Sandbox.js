@@ -185,19 +185,25 @@ const Sandbox = () => {
                     <h1 className="mb-3 text-2xl text-center font-medium">Installation</h1>
                     <div className="mockup-code">
                         <pre data-prefix="$">
-                            <code>bun install rajoelina-js</code>
+                            <code>npm install react-pop-cards core-js</code>
                         </pre>
                         <pre>
                             <code>or</code>
                         </pre>
                         <pre data-prefix="$">
-                            <code>pnpm i rajoelina-js</code>
+                            <code>yarn add react-pop-cards core-js</code>
                         </pre>
                         <pre>
                             <code>or</code>
                         </pre>
                         <pre data-prefix="$">
-                            <code>npm i rajoelina-js</code>
+                            <code>pnpm add react-pop-cards core-js</code>
+                        </pre>
+                        <pre>
+                            <code>or</code>
+                        </pre>
+                        <pre data-prefix="$">
+                            <code>bun add react-pop-cards core-js</code>
                         </pre>
                     </div>
                 </div>
