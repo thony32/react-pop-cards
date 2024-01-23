@@ -61,3 +61,7 @@
 .col-span-3{
     grid-column: span 3 / span 3;
 }
+
+.rounded-2xl{
+    border-radius: 1rem;
+}

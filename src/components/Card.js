@@ -12,9 +12,9 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
     const parentCard = useRef(null)
 
     // default content div classes
-    const cardDivClass = "col-span-3 flex justify-center items-center";
-    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center";
-    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md";
+    const cardDivClass = "col-span-3 flex justify-center items-center"
+    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center"
+    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md"
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
@@ -69,8 +69,23 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
         }
     }
 
+    const getDisposition = (disposition) => {
+        switch (disposition) {
+            case "LeftRight":
+                return "grid grid-cols-5 h-screen"
+            case "RightLeft":
+                return "grid grid-cols-5 h-screen"
+            case "TopBottom":
+                return "flex flex-col justify-center items-center gap-[10%] h-screen"
+            case "BottomTop":
+                return "flex flex-col-reverse justify-center items-center gap-[10%] h-screen"
+            default:
+                return "grid grid-cols-5 h-screen"
+        }
+    }
+
     return (
-        <div className="grid grid-cols-5 h-screen">
+        <div className={getDisposition(disposition)}>
             <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` ${cardDivClass}`}>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.keys(cards).map((cardKey, key) => (
@@ -115,9 +130,9 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
-    disposition: 'LeftRight',
-    bgColor: 'bg-gray-200',
-    isRounded : false
-};
+    disposition: "LeftRight",
+    bgColor: "bg-gray-200",
+    isRounded: false,
+}
 
 export default Card
