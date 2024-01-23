@@ -18,23 +18,24 @@ const Sandbox = () => {
     const array = ["Un", "Deux", "Trois", "Quatre"]
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
-    const [code, setCode] = useState("<Card data={array} />")
+    const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded=false />`)
     const [tension, setTension] = useState(120)
     const [friction, setFriction] = useState(10)
-    const [tempTension, setTempTension] = useState(120);
-    const [tempFriction, setTempFriction] = useState(10);
+    const [tempTension, setTempTension] = useState(120)
+    const [tempFriction, setTempFriction] = useState(10)
 
     const handleTensionChange = (event) => {
-        setTempTension(event.target.value);
+        setTempTension(event.target.value)
     }
 
     const handleFrictionChange = (event) => {
-        setTempFriction(event.target.value);
+        setTempFriction(event.target.value)
     }
 
     const setTensionAndFriction = () => {
-        setTension(tempTension);
-        setFriction(tempFriction);
+        setTension(tempTension)
+        setFriction(tempFriction)
+        updateCode(disposition, radius, tempTension, tempFriction)
     }
 
     const handleData = () => {
@@ -54,26 +55,45 @@ const Sandbox = () => {
     const handleDispositionChange = (event) => {
         const newDisposition = event.target.value
         setDisposition(newDisposition)
-        updateCode(newDisposition, radius)
+        updateCode(newDisposition, radius, tempTension, tempFriction)
     }
 
     const handleRadiusChange = () => {
         setRadius(!radius)
-        updateCode(disposition, !radius)
+        updateCode(disposition, !radius, tempTension, tempFriction)
     }
 
-    const updateCode = (newDisposition, newIsRounded) => {
+    const updateCode = (newDisposition, newIsRounded, newTension, newFriction) => {
         console.log(newDisposition)
         console.log(newIsRounded)
-        if (newDisposition !== null) {
-            setCode(`<Card data={array} disposition="${newDisposition}" />`)
+        console.log(newTension)
+        console.log(newFriction)
+        // if (newDisposition !== null) {
+        //     setCode(`<Card data="${array}" disposition="${newDisposition}" />`)
+        // }
+        // if (newIsRounded !== undefined) {
+        //     setCode(`<Card data="${array}" isRounded=${newIsRounded} />`)
+        // }
+        // if (newDisposition !== "" && newIsRounded !== undefined) {
+        //     setCode(`<Card data="${array}" disposition="${newDisposition}" isRounded={${newIsRounded}} />`)
+        // }
+        let parts = []
+
+        if (newDisposition !== "") {
+            parts.push(`disposition=${newDisposition}`)
         }
+
+        parts.push(`tension={${newTension !== "" ? newTension : "0"}}`)
+        parts.push(`friction={${newFriction !== "" ? newFriction : "0"}}`)
+
         if (newIsRounded !== undefined) {
-            setCode(`<Card data={array} isRounded=${newIsRounded} />`)
+            parts.push(`isRounded=${newIsRounded}`)
+        } else {
+            parts.push(`isRounded=false`)
         }
-        if (newDisposition !== "" && newIsRounded !== undefined) {
-            setCode(`<Card data={array} disposition="${newDisposition}" isRounded={${newIsRounded}} />`)
-        }
+
+        let codeString = `<Card data={array} ${parts.join(" ")} />`
+        setCode(codeString)
     }
 
     return (
@@ -143,13 +163,15 @@ const Sandbox = () => {
                         <span className="text-xl font-bold">Tension and friction</span>
                         <div>
                             <label>Tension:</label>
-                            <input type="number" placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
+                            <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
                         </div>
                         <div>
                             <label>Friction:</label>
-                            <input type="number" placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
+                            <input type="number" value={tempFriction} placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
                         </div>
-                        <button className="btn btn-info" onClick={setTensionAndFriction}>Set</button>
+                        <button className="btn btn-info" onClick={setTensionAndFriction}>
+                            Set
+                        </button>
                     </div>
                 </div>
                 <div className="col-span-2 p-8">
