@@ -147,7 +147,6 @@ const Sandbox = () => {
                         <pre data-prefix="$"><code>npm i rajoelina-js</code></pre>
                     </div>
                 </div>
-
             </div>
         </div>
     )
