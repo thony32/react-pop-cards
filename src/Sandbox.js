@@ -136,6 +136,7 @@ const Sandbox = () => {
             <div>
                 <Card data={array} disposition={disposition} isRounded={radius} />
             </div>
+            {/* Efa tsy rajoelina tsony xD */}
             <div className="flex justify-center">
                 <div>
                     <h1 className="mb-3 text-2xl text-center font-medium">Installation</h1>
