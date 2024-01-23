@@ -12,9 +12,9 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const parentCard = useRef(null)
 
     // default content div classes
-    const cardDivClass = "col-span-3 flex justify-center items-center duration-100";
-    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100";
-    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md";
+    const cardDivClass = "col-span-3 flex justify-center items-center duration-100"
+    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100"
+    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md"
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
@@ -26,29 +26,28 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     const [cards, setCards] = useState(convertedObject)
 
-
     // active card
     const [activeCard, setActiveCard] = useState(data[0].toLowerCase())
-    
+
     useEffect(() => {
-        handleCardClick(activeCard);
+        handleCardClick(activeCard)
         const handleLocalStorageUpdate = () => {
             try {
-                const newData = JSON.parse(localStorage.getItem('data')).reduce((acc, currentValue) => {
-                    acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
-                    return acc;
-                }, {});
-                setCards(newData);
+                const newData = JSON.parse(localStorage.getItem("data")).reduce((acc, currentValue) => {
+                    acc[currentValue.toLowerCase()] = { ...initialCardDimensions }
+                    return acc
+                }, {})
+                setCards(newData)
             } catch (error) {
-                console.error('Error parsing local storage data:', error);
+                console.error("Error parsing local storage data:", error)
             }
-        };
-        window.addEventListener('DataChange', handleLocalStorageUpdate);
+        }
+        window.addEventListener("DataChange", handleLocalStorageUpdate)
         return () => {
-            window.removeEventListener('DataChange', handleLocalStorageUpdate);
-        };
-    }, [data, activeCard, isMobile]);
-    
+            window.removeEventListener("DataChange", handleLocalStorageUpdate)
+        }
+    }, [data, activeCard, isMobile])
+
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
         const updatedCards = Object.keys(cards).reduce((acc, key) => {
@@ -145,9 +144,9 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
-    disposition: 'LeftRight',
-    bgColor: 'bg-gray-200',
-    isRounded: false
-};
+    disposition: "LeftRight",
+    bgColor: "bg-gray-200",
+    isRounded: false,
+}
 
 export default Card
