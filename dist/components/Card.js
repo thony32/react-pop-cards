@@ -26,7 +26,9 @@ const Card = _ref => {
     data,
     bgColor,
     disposition,
-    isRounded
+    isRounded,
+    tension,
+    friction
   } = _ref;
   const isMobile = (0, _reactResponsive.useMediaQuery)({
     query: "max-width: 600px"
@@ -56,18 +58,18 @@ const Card = _ref => {
     handleCardClick(activeCard);
     const handleLocalStorageUpdate = () => {
       try {
-        const newData = JSON.parse(localStorage.getItem('data')).reduce((acc, currentValue) => {
+        const newData = JSON.parse(localStorage.getItem("data")).reduce((acc, currentValue) => {
           acc[currentValue.toLowerCase()] = _objectSpread({}, initialCardDimensions);
           return acc;
         }, {});
         setCards(newData);
       } catch (error) {
-        console.error('Error parsing local storage data:', error);
+        console.error("Error parsing local storage data:", error);
       }
     };
-    window.addEventListener('DataChange', handleLocalStorageUpdate);
+    window.addEventListener("DataChange", handleLocalStorageUpdate);
     return () => {
-      window.removeEventListener('DataChange', handleLocalStorageUpdate);
+      window.removeEventListener("DataChange", handleLocalStorageUpdate);
     };
   }, [data, activeCard, isMobile]);
 
@@ -92,8 +94,8 @@ const Card = _ref => {
         height: cards[card].height
       },
       config: {
-        tension: 120,
-        friction: 10
+        tension: tension,
+        friction: friction
       }
     });
     return acc;
@@ -115,15 +117,15 @@ const Card = _ref => {
   const getDisposition = disposition => {
     switch (disposition) {
       case "LeftRight":
-        return "grid grid-cols-5 h-screen";
+        return "grid grid-cols-5 h-full";
       case "RightLeft":
-        return "grid grid-cols-5 h-screen";
+        return "grid grid-cols-5 h-full";
       case "TopBottom":
-        return "flex flex-col justify-center items-center gap-[10%] h-screen";
+        return "flex flex-col justify-center items-center gap-[20%] h-full";
       case "BottomTop":
-        return "flex flex-col-reverse justify-center items-center gap-[10%] h-screen";
+        return "flex flex-col-reverse justify-center items-center gap-[20%] h-full";
       default:
-        return "grid grid-cols-5 h-screen";
+        return "grid grid-cols-5 h-full";
     }
   };
   return /*#__PURE__*/_react.default.createElement("div", {
@@ -165,8 +167,8 @@ Card.propTypes = {
   data: _propTypes.default.array.isRequired
 };
 Card.defaultProps = {
-  disposition: 'LeftRight',
-  bgColor: 'bg-gray-200',
+  disposition: "LeftRight",
+  bgColor: "bg-gray-200",
   isRounded: false
 };
 var _default = exports.default = Card;
