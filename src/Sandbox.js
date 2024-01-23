@@ -98,6 +98,20 @@ const Sandbox = () => {
                                     onChange={handleDispositionChange} />
                             </label>
                         </div>
+                        <div className="form-control">
+                            <label className="label cursor-pointer space-x-5">
+                                <span className="label-text">Top to bottom</span>
+                                <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"}
+                                    onChange={handleDispositionChange} />
+                            </label>
+                        </div>
+                        <div className="form-control">
+                            <label className="label cursor-pointer space-x-5">
+                                <span className="label-text">Bottom to top</span>
+                                <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"}
+                                    onChange={handleDispositionChange} />
+                            </label>
+                        </div>
                     </div>
                     {/* for radius */}
                     <div>
