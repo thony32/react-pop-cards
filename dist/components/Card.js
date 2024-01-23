@@ -24,13 +24,20 @@ function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = 
 const Card = _ref => {
   let {
     data,
-    bgColor
+    bgColor,
+    disposition,
+    isRounded
   } = _ref;
   const isMobile = (0, _reactResponsive.useMediaQuery)({
     query: "max-width: 600px"
   });
   const activeCardRef = (0, _react.useRef)(null);
   const parentCard = (0, _react.useRef)(null);
+
+  // default content div classes
+  const cardDivClass = "col-span-3 flex justify-center items-center duration-100";
+  const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100";
+  const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md";
 
   // Define card data
   const initialCardDimensions = {
@@ -44,7 +51,25 @@ const Card = _ref => {
   const [cards, setCards] = (0, _react.useState)(convertedObject);
 
   // active card
-  const [activeCard, setActiveCard] = (0, _react.useState)(data[0]);
+  const [activeCard, setActiveCard] = (0, _react.useState)(data[0].toLowerCase());
+  (0, _react.useEffect)(() => {
+    handleCardClick(activeCard);
+    const handleLocalStorageUpdate = () => {
+      try {
+        const newData = JSON.parse(localStorage.getItem('data')).reduce((acc, currentValue) => {
+          acc[currentValue.toLowerCase()] = _objectSpread({}, initialCardDimensions);
+          return acc;
+        }, {});
+        setCards(newData);
+      } catch (error) {
+        console.error('Error parsing local storage data:', error);
+      }
+    };
+    window.addEventListener('DataChange', handleLocalStorageUpdate);
+    return () => {
+      window.removeEventListener('DataChange', handleLocalStorageUpdate);
+    };
+  }, [data, activeCard, isMobile]);
 
   // Handle card click and update dimensions
   const handleCardClick = cardKey => {
@@ -58,11 +83,6 @@ const Card = _ref => {
     setCards(updatedCards);
     setActiveCard(cardKey);
   };
-
-  // Update active card ref
-  (0, _react.useEffect)(() => {
-    handleCardClick(activeCard);
-  }, [activeCard]);
 
   // Animated styles for each card
   const animatedStyles = Object.keys(cards).reduce((acc, card) => {
@@ -92,10 +112,24 @@ const Card = _ref => {
         return "";
     }
   };
+  const getDisposition = disposition => {
+    switch (disposition) {
+      case "LeftRight":
+        return "grid grid-cols-5 h-screen";
+      case "RightLeft":
+        return "grid grid-cols-5 h-screen";
+      case "TopBottom":
+        return "flex flex-col justify-center items-center gap-[10%] h-screen";
+      case "BottomTop":
+        return "flex flex-col-reverse justify-center items-center gap-[10%] h-screen";
+      default:
+        return "grid grid-cols-5 h-screen";
+    }
+  };
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "grid grid-cols-5 h-screen"
+    className: getDisposition(disposition)
   }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "col-span-3 flex justify-center items-center"
+    className: (disposition === "LeftRight" ? "order-1" : "order-2") + " ".concat(cardDivClass)
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "grid grid-cols-2 gap-2"
   }, Object.keys(cards).map((cardKey, key) => /*#__PURE__*/_react.default.createElement("div", {
@@ -106,29 +140,33 @@ const Card = _ref => {
     ref: activeCard === cardKey ? activeCardRef : null,
     style: animatedStyles[cardKey],
     onClick: () => handleCardClick(cardKey),
-    className: "".concat(activeCard === cardKey ? "px-6 py-4 rounded-2xl" : "flex justify-center items-center rounded-2xl", " cursor-pointer ").concat(bgColor)
+    className: "".concat(activeCard === cardKey ? "px-6 py-4" : "flex justify-center items-center", " cursor-pointer duration-100 ").concat(bgColor, " ").concat(isRounded ? " rounded-2xl" : " rounded-none")
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "space-y-3"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "flex justify-between items-center"
   }, /*#__PURE__*/_react.default.createElement("label", {
-    className: (activeCard === cardKey ? "text-5xl" : "text-base") + " capitalize font-bold duration-500"
+    className: (activeCard === cardKey ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"
   }, cardKey), activeCard === cardKey && /*#__PURE__*/_react.default.createElement("div", {
     className: "w-20 h-20 text-center bg-green-500"
   }, "Icon or image here")), activeCard === cardKey && /*#__PURE__*/_react.default.createElement("p", {
     className: "line-clamp-[8] text-justify"
   }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt possimus assumenda sequi nihil, pariatur, aliquid molestias harum aliquam aut eum incidunt, amet accusantium numquam reiciendis. Dicta architecto quibusdam aspernatur laborum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quasi ipsum fuga ex harum reprehenderit, tempora a alias nisi dignissimos inventore quia eum modi molestiae perspiciatis ducimus optio minus nostrum."))))))), /*#__PURE__*/_react.default.createElement("div", {
-    className: "col-span-2 gap-4 flex justify-center items-center"
+    className: (disposition === "RightLeft" ? "order-1" : "order-2") + " ".concat(miniCardDivClass)
   }, Object.keys(cards).map(cardKey => /*#__PURE__*/_react.default.createElement("div", {
     key: cardKey,
     onClick: () => handleCardClick(cardKey),
-    className: (activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90") + " hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md rounded-2xl"
+    className: "".concat(activeCard === cardKey ? "scale-110 shadow-xl" : "scale-90", " ").concat(miniCardClass, " ").concat(isRounded ? "rounded-2xl" : "rounded-none")
   }, /*#__PURE__*/_react.default.createElement("label", {
     className: "text-center text-xs capitalize"
   }, cardKey)))));
 };
 Card.propTypes = {
-  data: _propTypes.default.array.isRequired,
-  bgColor: _propTypes.default.string.isRequired
+  data: _propTypes.default.array.isRequired
+};
+Card.defaultProps = {
+  disposition: 'LeftRight',
+  bgColor: 'bg-gray-200',
+  isRounded: false
 };
 var _default = exports.default = Card;
