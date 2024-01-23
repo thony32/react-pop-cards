@@ -19,6 +19,23 @@ const Sandbox = () => {
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
     const [code, setCode] = useState("<Card data={array} />")
+    const [tension, setTension] = useState(120)
+    const [friction, setFriction] = useState(10)
+    const [tempTension, setTempTension] = useState(120);
+    const [tempFriction, setTempFriction] = useState(10);
+
+    const handleTensionChange = (event) => {
+        setTempTension(event.target.value);
+    }
+
+    const handleFrictionChange = (event) => {
+        setTempFriction(event.target.value);
+    }
+
+    const setTensionAndFriction = () => {
+        setTension(tempTension);
+        setFriction(tempFriction);
+    }
 
     const handleData = () => {
         var data = document.getElementById("dataInputRef").value.split(",")
@@ -122,16 +139,17 @@ const Sandbox = () => {
                     </div>
                 </div>
                 <div className="p-8 flex gap-[5%] flex-col">
-                    <div>
+                    <div className="flex flex-col gap-4">
                         <span className="text-xl font-bold">Tension and friction</span>
                         <div>
                             <label>Tension:</label>
-                            <input type="number" placeholder="120" className="input input-bordered w-full max-w-xs" />
+                            <input type="number" placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
                         </div>
                         <div>
                             <label>Friction:</label>
-                            <input type="number" placeholder="10" className="input input-bordered w-full max-w-xs" />
+                            <input type="number" placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
                         </div>
+                        <button className="btn btn-info" onClick={setTensionAndFriction}>Set</button>
                     </div>
                 </div>
                 <div className="col-span-2 p-8">
@@ -146,7 +164,7 @@ const Sandbox = () => {
                 </div>
             </div>
             <div>
-                <Card data={array} disposition={disposition} isRounded={radius} />
+                <Card data={array} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
             </div>
             {/* Efa tsy rajoelina tsony xD */}
             <div className="flex justify-center">

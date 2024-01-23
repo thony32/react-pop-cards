@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive"
 import "../index.css"
 import PropTypes from "prop-types"
 
-const Card = ({ data, bgColor, disposition, isRounded }) => {
+const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const isMobile = useMediaQuery({ query: "max-width: 600px" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
@@ -64,7 +64,7 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
     const animatedStyles = Object.keys(cards).reduce((acc, card) => {
         acc[card] = useSpring({
             to: { width: cards[card].width, height: cards[card].height },
-            config: { tension: 120, friction: 10 },
+            config: { tension: tension, friction: friction },
         })
         return acc
     }, {})
@@ -91,9 +91,9 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
             case "RightLeft":
                 return "grid grid-cols-5 h-full"
             case "TopBottom":
-                return "flex flex-col justify-center items-center gap-[10%] h-full"
+                return "flex flex-col justify-center items-center gap-[20%] h-full"
             case "BottomTop":
-                return "flex flex-col-reverse justify-center items-center gap-[10%] h-full"
+                return "flex flex-col-reverse justify-center items-center gap-[20%] h-full"
             default:
                 return "grid grid-cols-5 h-full"
         }
