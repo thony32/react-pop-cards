@@ -1,7 +1,7 @@
 import Card from "./components/Card"
 import React, { useState } from "react"
 
-function checkForDuplicates(array) {
+const checkForDuplicates = (array) => {
     let valuesAlreadySeen = []
 
     for (let i = 0; i < array.length; i++) {
@@ -68,15 +68,7 @@ const Sandbox = () => {
         console.log(newIsRounded)
         console.log(newTension)
         console.log(newFriction)
-        // if (newDisposition !== null) {
-        //     setCode(`<Card data="${array}" disposition="${newDisposition}" />`)
-        // }
-        // if (newIsRounded !== undefined) {
-        //     setCode(`<Card data="${array}" isRounded=${newIsRounded} />`)
-        // }
-        // if (newDisposition !== "" && newIsRounded !== undefined) {
-        //     setCode(`<Card data="${array}" disposition="${newDisposition}" isRounded={${newIsRounded}} />`)
-        // }
+
         let parts = []
 
         if (newDisposition !== "") {
@@ -188,7 +180,6 @@ const Sandbox = () => {
             <div>
                 <Card data={array} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
             </div>
-            {/* Efa tsy rajoelina tsony xD */}
             <div className="flex justify-center">
                 <div>
                     <h1 className="mb-3 text-2xl text-center font-medium">Installation</h1>
