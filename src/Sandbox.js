@@ -15,54 +15,53 @@ function checkForDuplicates(array) {
 }
 
 const Sandbox = () => {
-    const array = ["Un", "Deux", "Trois", "Quatre"];
-    const [disposition, setDisposition] = useState("");
-    const [radius, setRadius] = useState();
-    const [code, setCode] = useState("<Card data={array} />");
+    const array = ["Un", "Deux", "Trois", "Quatre"]
+    const [disposition, setDisposition] = useState("")
+    const [radius, setRadius] = useState()
+    const [code, setCode] = useState("<Card data={array} />")
 
-    function handleData() {
-        var data = document.getElementById("dataInputRef").value.split(',');
+    const handleData = () => {
+        var data = document.getElementById("dataInputRef").value.split(",")
         if (data.length !== 4) {
-            alert('Only 4 letters')
+            alert("Only 4 letters")
         } else {
             if (checkForDuplicates(data)) {
                 alert("Duplicate letters")
             } else {
-                localStorage.setItem("data", JSON.stringify(data));
-                window.dispatchEvent(new Event('DataChange'));
+                localStorage.setItem("data", JSON.stringify(data))
+                window.dispatchEvent(new Event("DataChange"))
             }
         }
     }
 
-
     const handleDispositionChange = (event) => {
-        const newDisposition = event.target.value;
-        setDisposition(newDisposition);
-        updateCode(newDisposition, radius);
-    };
+        const newDisposition = event.target.value
+        setDisposition(newDisposition)
+        updateCode(newDisposition, radius)
+    }
 
     const handleRadiusChange = () => {
-        setRadius(!radius);
-        updateCode(disposition, !radius);
+        setRadius(!radius)
+        updateCode(disposition, !radius)
     }
 
     const updateCode = (newDisposition, newIsRounded) => {
-        console.log(newDisposition);
-        console.log(newIsRounded);
+        console.log(newDisposition)
+        console.log(newIsRounded)
         if (newDisposition !== null) {
-            setCode(`<Card data={array} disposition="${newDisposition}" />`);
+            setCode(`<Card data={array} disposition="${newDisposition}" />`)
         }
         if (newIsRounded !== undefined) {
-            setCode(`<Card data={array} isRounded=${newIsRounded} />`);
+            setCode(`<Card data={array} isRounded=${newIsRounded} />`)
         }
         if (newDisposition !== "" && newIsRounded !== undefined) {
-            setCode(`<Card data={array} disposition="${newDisposition}" isRounded={${newIsRounded}} />`);
+            setCode(`<Card data={array} disposition="${newDisposition}" isRounded={${newIsRounded}} />`)
         }
-    };
+    }
 
     return (
         <div className="space-y-5 p-8">
-            <div className="grid grid-cols-5">
+            <div className="grid grid-cols-6">
                 <div className="col-span-3 p-8 flex gap-[5%]">
                     {/* for data */}
                     <div>
@@ -71,13 +70,15 @@ const Sandbox = () => {
                                 <span className="text-xl font-bold">Data</span>
                             </div>
                             <div className="flex gap-2">
-                                <input id="dataInputRef" type="text" placeholder={array.join(',')} className="input input-bordered w-full max-w-xs" />
+                                <input id="dataInputRef" type="text" placeholder={array.join(",")} className="input input-bordered w-full max-w-xs" />
                                 <button onClick={() => handleData()} className="btn btn-info">
                                     Set
                                 </button>
                             </div>
                             <div className="label">
-                                <span className="label-text-alt">Séparer par <kbd className="kbd kbd-xs">,</kbd> (ex: un,deux,trois,quatre)</span>
+                                <span className="label-text-alt">
+                                    Séparer par <kbd className="kbd kbd-xs">,</kbd> (ex: un,deux,trois,quatre)
+                                </span>
                             </div>
                         </label>
                     </div>
@@ -87,29 +88,25 @@ const Sandbox = () => {
                         <div className="form-control">
                             <label className="label cursor-pointer space-x-5">
                                 <span className="label-text">Left to right</span>
-                                <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"}
-                                    onChange={handleDispositionChange} />
+                                <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label cursor-pointer space-x-5">
                                 <span className="label-text">Right to left</span>
-                                <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"}
-                                    onChange={handleDispositionChange} />
+                                <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label cursor-pointer space-x-5">
                                 <span className="label-text">Top to bottom</span>
-                                <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"}
-                                    onChange={handleDispositionChange} />
+                                <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"} onChange={handleDispositionChange} />
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label cursor-pointer space-x-5">
                                 <span className="label-text">Bottom to top</span>
-                                <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"}
-                                    onChange={handleDispositionChange} />
+                                <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"} onChange={handleDispositionChange} />
                             </label>
                         </div>
                     </div>
@@ -124,11 +121,26 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
+                <div className="p-8 flex gap-[5%] flex-col">
+                    <div>
+                        <span className="text-xl font-bold">Tension and friction</span>
+                        <div>
+                            <label>Tension:</label>
+                            <input type="number" placeholder="120" className="input input-bordered w-full max-w-xs" />
+                        </div>
+                        <div>
+                            <label>Friction:</label>
+                            <input type="number" placeholder="10" className="input input-bordered w-full max-w-xs" />
+                        </div>
+                    </div>
+                </div>
                 <div className="col-span-2 p-8">
                     <h1 className="text-3xl font-bold mb-3">Code preview</h1>
                     <div>
                         <div className="mockup-code">
-                            <pre><code id="code">{code}</code></pre>
+                            <pre>
+                                <code id="code">{code}</code>
+                            </pre>
                         </div>
                     </div>
                 </div>
@@ -141,11 +153,21 @@ const Sandbox = () => {
                 <div>
                     <h1 className="mb-3 text-2xl text-center font-medium">Installation</h1>
                     <div className="mockup-code">
-                        <pre data-prefix="$"><code>bun install rajoelina-js</code></pre>
-                        <pre><code>or</code></pre>
-                        <pre data-prefix="$"><code>pnpm i rajoelina-js</code></pre>
-                        <pre><code>or</code></pre>
-                        <pre data-prefix="$"><code>npm i rajoelina-js</code></pre>
+                        <pre data-prefix="$">
+                            <code>bun install rajoelina-js</code>
+                        </pre>
+                        <pre>
+                            <code>or</code>
+                        </pre>
+                        <pre data-prefix="$">
+                            <code>pnpm i rajoelina-js</code>
+                        </pre>
+                        <pre>
+                            <code>or</code>
+                        </pre>
+                        <pre data-prefix="$">
+                            <code>npm i rajoelina-js</code>
+                        </pre>
                     </div>
                 </div>
             </div>

@@ -87,15 +87,15 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
     const getDisposition = (disposition) => {
         switch (disposition) {
             case "LeftRight":
-                return "grid grid-cols-5 h-screen"
+                return "grid grid-cols-5 h-full"
             case "RightLeft":
-                return "grid grid-cols-5 h-screen"
+                return "grid grid-cols-5 h-full"
             case "TopBottom":
-                return "flex flex-col justify-center items-center gap-[10%] h-screen"
+                return "flex flex-col justify-center items-center gap-[10%] h-full"
             case "BottomTop":
-                return "flex flex-col-reverse justify-center items-center gap-[10%] h-screen"
+                return "flex flex-col-reverse justify-center items-center gap-[10%] h-full"
             default:
-                return "grid grid-cols-5 h-screen"
+                return "grid grid-cols-5 h-full"
         }
     }
 

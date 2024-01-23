@@ -81,3 +81,20 @@
 .gap-\[10\%\] {
     gap: 10%;
 }
+
+.hover\:scale-125:hover {
+    transform: scale(1.25);
+}
+
+.duration-100 {
+    transition-duration: 100ms;
+}
+
+.duration-200 {
+    transition-duration: 200ms;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
