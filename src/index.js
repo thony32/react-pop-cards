@@ -4,14 +4,14 @@ import "./index.css"
 import Card from './components/Card';
 import Sandbox from "./Sandbox";
 
-// const array = ["Un", "Deux", "Trois", "Quatre"]
+const array = ["Un", "Deux", "Trois", "Quatre"]
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         {/* For sandbox */}
-        <Sandbox />
+        {/* <Sandbox /> */}
         {/* For prod */}
-        {/* <Card data={array} /> */}
+        <Card data={array} />
     </React.StrictMode>,
 )
 
