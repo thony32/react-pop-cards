@@ -1,6 +1,6 @@
 {
   "name": "react-pop-cards",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "keywords": [
@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thony32/test-card.git"
+    "url": "git+https://github.com/thony32/react-pop-cards.git"
   },
   "dependencies": {
     "-": "^0.0.1",
@@ -33,6 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && postcss src/index.css -o dist/index.css",
+    "build:vercel": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
