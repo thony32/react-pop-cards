@@ -12,9 +12,9 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
     const parentCard = useRef(null)
 
     // default content div classes
-    const cardDivClass = "col-span-3 flex justify-center items-center"
-    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center"
-    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md"
+    const cardDivClass = "col-span-3 flex justify-center items-center duration-100";
+    const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100";
+    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md";
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
@@ -26,9 +26,29 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
 
     const [cards, setCards] = useState(convertedObject)
 
+
     // active card
     const [activeCard, setActiveCard] = useState(data[0].toLowerCase())
-
+    
+    useEffect(() => {
+        handleCardClick(activeCard);
+        const handleLocalStorageUpdate = () => {
+            try {
+                const newData = JSON.parse(localStorage.getItem('data')).reduce((acc, currentValue) => {
+                    acc[currentValue.toLowerCase()] = { ...initialCardDimensions };
+                    return acc;
+                }, {});
+                setCards(newData);
+            } catch (error) {
+                console.error('Error parsing local storage data:', error);
+            }
+        };
+        window.addEventListener('DataChange', handleLocalStorageUpdate);
+        return () => {
+            window.removeEventListener('DataChange', handleLocalStorageUpdate);
+        };
+    }, [data, activeCard, isMobile]);
+    
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
         const updatedCards = Object.keys(cards).reduce((acc, key) => {
@@ -39,11 +59,6 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
         setCards(updatedCards)
         setActiveCard(cardKey)
     }
-
-    // Update active card ref
-    useEffect(() => {
-        handleCardClick(activeCard)
-    }, [activeCard])
 
     // Animated styles for each card
     const animatedStyles = Object.keys(cards).reduce((acc, card) => {
@@ -94,11 +109,11 @@ const Card = ({ data, bgColor, disposition, isRounded }) => {
                                 ref={activeCard === cardKey ? activeCardRef : null}
                                 style={animatedStyles[cardKey]}
                                 onClick={() => handleCardClick(cardKey)}
-                                className={`${activeCard === cardKey ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer ${bgColor} ${isRounded ? " rounded-2xl" : " rounded-none"}`}
+                                className={`${activeCard === cardKey ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${bgColor} ${isRounded ? " rounded-2xl" : " rounded-none"}`}
                             >
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
-                                        <label className={(activeCard === cardKey ? "text-5xl" : "text-base") + " capitalize font-bold duration-500"}>{cardKey}</label>
+                                        <label className={(activeCard === cardKey ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{cardKey}</label>
                                         {activeCard === cardKey && <div className="w-20 h-20 text-center bg-green-500">Icon or image here</div>}
                                     </div>
                                     {/* description here */}
@@ -130,9 +145,9 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
-    disposition: "LeftRight",
-    bgColor: "bg-gray-200",
-    isRounded: false,
-}
+    disposition: 'LeftRight',
+    bgColor: 'bg-gray-200',
+    isRounded: false
+};
 
 export default Card
