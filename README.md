@@ -1,3 +1,3 @@
 ## Docs (Beta)
 
-Misy props roa aloha atreto: data type : array , bgColor type : string (classe tailwind avao vo mety)
+Official documentation on [react-pop-cards](https://react-pop-cards.vercel.app)
