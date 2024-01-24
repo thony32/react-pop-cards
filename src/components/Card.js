@@ -147,6 +147,8 @@ Card.defaultProps = {
     disposition: "LeftRight",
     bgColor: "bg-gray-200",
     isRounded: false,
+    tension: 120,
+    friction: 10,
 }
 
 export default Card
