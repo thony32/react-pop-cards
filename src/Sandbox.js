@@ -89,9 +89,9 @@ const Sandbox = () => {
     }
 
     return (
-        <div className="space-y-5 p-8">
-            <div className="grid grid-cols-6">
-                <div className="col-span-3 p-8 flex gap-[5%]">
+        <div className="space-y-[5%] p-8">
+            <div className="grid grid-cols-8 gap-[5%]">
+                <div className="col-span-2 space-y-10">
                     {/* for data */}
                     <div>
                         <label className="form-control w-full max-w-xs">
@@ -149,8 +149,7 @@ const Sandbox = () => {
                             </label>
                         </div>
                     </div>
-                </div>
-                <div className="p-8 flex gap-[5%] flex-col">
+                    {/* for tension */}
                     <div className="flex flex-col gap-4">
                         <span className="text-xl font-bold">Tension and friction</span>
                         <div>
@@ -166,7 +165,12 @@ const Sandbox = () => {
                         </button>
                     </div>
                 </div>
-                <div className="col-span-2 p-8">
+                <div className="col-span-6">
+                    <Card data={array} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
+                </div>
+            </div>
+            <div className="grid grid-cols-2">
+                <div className="p-8">
                     <h1 className="text-3xl font-bold mb-3">Code preview</h1>
                     <div>
                         <div className="mockup-code">
@@ -176,35 +180,32 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <Card data={array} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
-            </div>
-            <div className="flex justify-center">
-                <div>
-                    <h1 className="mb-3 text-2xl text-center font-medium">Installation</h1>
-                    <div className="mockup-code">
-                        <pre data-prefix="$">
-                            <code>npm install react-pop-cards core-js</code>
-                        </pre>
-                        <pre>
-                            <code>or</code>
-                        </pre>
-                        <pre data-prefix="$">
-                            <code>yarn add react-pop-cards core-js</code>
-                        </pre>
-                        <pre>
-                            <code>or</code>
-                        </pre>
-                        <pre data-prefix="$">
-                            <code>pnpm add react-pop-cards core-js</code>
-                        </pre>
-                        <pre>
-                            <code>or</code>
-                        </pre>
-                        <pre data-prefix="$">
-                            <code>bun add react-pop-cards core-js</code>
-                        </pre>
+                <div className="flex justify-center">
+                    <div>
+                        <h1 className="text-3xl font-bold mb-3">Installation</h1>
+                        <div className="mockup-code">
+                            <pre data-prefix="$">
+                                <code>npm install react-pop-cards core-js</code>
+                            </pre>
+                            <pre>
+                                <code>or</code>
+                            </pre>
+                            <pre data-prefix="$">
+                                <code>yarn add react-pop-cards core-js</code>
+                            </pre>
+                            <pre>
+                                <code>or</code>
+                            </pre>
+                            <pre data-prefix="$">
+                                <code>pnpm add react-pop-cards core-js</code>
+                            </pre>
+                            <pre>
+                                <code>or</code>
+                            </pre>
+                            <pre data-prefix="$">
+                                <code>bun add react-pop-cards core-js</code>
+                            </pre>
+                        </div>
                     </div>
                 </div>
             </div>
