@@ -15,12 +15,13 @@ const Sandbox = () => {
 
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
-    const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded=false tension={120} friction={10} />`)
+    const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded=false tension={120} friction={10} bgColor="#e5e7eb"/>`)
     const [tension, setTension] = useState()
     const [friction, setFriction] = useState()
     const [tempTension, setTempTension] = useState(120)
     const [tempFriction, setTempFriction] = useState(10)
     const [bgColor, setBgColor] = useState("#000000")
+    const [editorValue, setEditorValue] = useState("")
 
     const handleBgColorChange = (event) => {
         setBgColor(document.getElementById("colorInput").value)
@@ -89,8 +90,6 @@ const Sandbox = () => {
         },
         scrollBeyondLastLine: false,
     }
-
-    const [editorValue, setEditorValue] = useState("")
 
     const handleEditorChange = (value) => {
         setEditorValue(value)

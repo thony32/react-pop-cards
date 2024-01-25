@@ -147,7 +147,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
     disposition: "LeftRight",
-    bgColor: "#000000",
+    bgColor: "#e5e7eb",
     isRounded: false,
     tension: 120,
     friction: 10,
