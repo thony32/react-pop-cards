@@ -1,69 +1,69 @@
 {
-  "name": "react-pop-cards",
-  "version": "0.2.1",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "keywords": [
-    "card",
-    "react",
-    "useSpring",
-    "tailwindcss"
-  ],
-  "files": [
-    "dist",
-    "README.md"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thony32/react-pop-cards.git"
-  },
-  "dependencies": {
-    "-": "^0.0.1",
-    "@react-spring/web": "^9.7.3",
-    "@testing-library/jest-dom": "^6.2.0",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.2",
-    "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-responsive": "^9.0.2",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^3.5.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && postcss src/index.css -o dist/index.css",
-    "build:vercel": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+    "name": "react-pop-cards",
+    "version": "0.2.1",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "keywords": [
+        "card",
+        "react",
+        "useSpring",
+        "tailwindcss"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.23.4",
-    "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.8",
-    "@babel/preset-react": "^7.23.3",
-    "@monaco-editor/react": "^4.6.0",
-    "autoprefixer": "^10.4.17",
-    "daisyui": "^4.6.0",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.1"
-  }
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thony32/react-pop-cards.git"
+    },
+    "dependencies": {
+        "-": "^0.0.1",
+        "@react-spring/web": "^9.7.3",
+        "@testing-library/jest-dom": "^6.2.0",
+        "@testing-library/react": "^14.1.2",
+        "@testing-library/user-event": "^14.5.2",
+        "prop-types": "^15.8.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-responsive": "^9.0.2",
+        "react-scripts": "5.0.1",
+        "web-vitals": "^3.5.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && postcss src/index.css -o dist/index.css",
+        "build:vercel": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.23.4",
+        "@babel/core": "^7.23.7",
+        "@babel/preset-env": "^7.23.8",
+        "@babel/preset-react": "^7.23.3",
+        "@monaco-editor/react": "^4.6.0",
+        "autoprefixer": "^10.4.17",
+        "daisyui": "^4.6.0",
+        "postcss-cli": "^11.0.0",
+        "tailwindcss": "^3.4.1"
+    }
 }

@@ -2,19 +2,6 @@ import Card from "./components/Card";
 import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
-const checkForDuplicates = (array) => {
-    let valuesAlreadySeen = []
-
-    for (let i = 0; i < array.length; i++) {
-        let value = array[i]
-        if (valuesAlreadySeen.indexOf(value) !== -1) {
-            return true
-        }
-        valuesAlreadySeen.push(value)
-    }
-    return false
-}
-
 const Sandbox = () => {
     const array = [
         { title: "Title1", description: "Description1", image: "https://placehold.co/600x400" },
@@ -43,20 +30,6 @@ const Sandbox = () => {
         setTension(tempTension)
         setFriction(tempFriction)
         updateCode(disposition, radius, tempTension, tempFriction)
-    }
-
-    const handleData = () => {
-        var data = document.getElementById("dataInputRef").value.split(",")
-        if (data.length !== 4) {
-            alert("Only 4 letters")
-        } else {
-            if (checkForDuplicates(data)) {
-                alert("Duplicate letters")
-            } else {
-                localStorage.setItem("data", JSON.stringify(data))
-                window.dispatchEvent(new Event("DataChange"))
-            }
-        }
     }
 
     const handleDispositionChange = (event) => {
