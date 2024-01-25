@@ -9,7 +9,28 @@ Here is an example:
 ```jsx
 import { Card } from "react-pop-cards"
 
-const array = ["one", "two", "three", "four"]
+const array = [
+  {
+    "title": "Title1",
+    "description": "Description1",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Title2",
+    "description": "Description2",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Title3",
+    "description": "Description3",
+    "image": "https://placehold.co/600x400"
+  },
+  {
+    "title": "Title4",
+    "description": "Description4",
+    "image": "https://placehold.co/600x400"
+  }
+]
 
 const myApp = () => {
     return (
@@ -19,3 +40,4 @@ const myApp = () => {
 
 export default myApp
 
+```

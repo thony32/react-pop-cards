@@ -21,11 +21,11 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     // assign the data to the cards
 
-    const newArray = data.map(item => ({
+    const newArray = data.map((item) => ({
         ...initialCardDimensions,
-        ...item
-    }));
-    const [cards, setCards] = useState(newArray);
+        ...item,
+    }))
+    const [cards, setCards] = useState(newArray)
 
     // active card
     const [activeCard, setActiveCard] = useState(data[0]["title"].toLowerCase())
@@ -35,10 +35,10 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         const handleLocalStorageUpdate = () => {
             console.log(JSON.parse(localStorage.getItem("data")))
             try {
-                const updatedArray = JSON.parse(localStorage.getItem("data")).map(item => ({
+                const updatedArray = JSON.parse(localStorage.getItem("data")).map((item) => ({
                     ...initialCardDimensions,
-                    ...item
-                }));
+                    ...item,
+                }))
                 setCards(updatedArray)
                 setActiveCard("")
             } catch (error) {
@@ -57,24 +57,24 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
             return {
                 ...card,
                 width: cardKey === card.title ? "20rem" : initialCardDimensions.width,
-                height: cardKey === card.title ? (isMobile ? "11rem" : "20rem") : initialCardDimensions.height
-            };
-        });
+                height: cardKey === card.title ? (isMobile ? "11rem" : "20rem") : initialCardDimensions.height,
+            }
+        })
 
-        setCards(updatedCards);
-        setActiveCard(cardKey);
-    };
+        setCards(updatedCards)
+        setActiveCard(cardKey)
+    }
     // Animated styles for each card
     const animatedStyles = Object.keys(cards).reduce((acc, cardKey) => {
         acc[cardKey] = useSpring({
             to: { width: cards[cardKey[0]].width.toString(), height: cards[cardKey[0]].height.toString() },
             config: { tension: tension, friction: friction },
-        });
-        return acc;
-    }, {});
+        })
+        return acc
+    }, {})
 
     const getCardClasses = (key) => {
-        key = Number(key);
+        key = Number(key)
         switch (key) {
             case 0:
                 return "flex justify-end items-end"
@@ -119,13 +119,9 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
                                         <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="image" />}
+                                        {activeCard === value.title && value.image != null && <img className="w-20 h-20" src={value.image} alt="image" />}
                                     </div>
-                                    {activeCard === value.title && (
-                                        <p className="line-clamp-[8] text-justify">
-                                            {value.description}
-                                        </p>
-                                    )}
+                                    {activeCard === value.title && <p className="line-clamp-[8] text-justify">{value.description}</p>}
                                 </div>
                             </animated.div>
                         </div>
