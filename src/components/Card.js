@@ -40,6 +40,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                     ...item
                 }));
                 setCards(updatedArray)
+                setActiveCard("")
             } catch (error) {
                 console.error("Error parsing local storage data:", error)
             }
