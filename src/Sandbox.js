@@ -1,5 +1,5 @@
 import Card from "./components/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
 
 const checkForDuplicates = (array) => {
@@ -104,9 +104,23 @@ const Sandbox = () => {
             horizontal: 'hidden',
             vertical: 'hidden'
         },
-        readOnly: true,
         scrollBeyondLastLine: false
     };
+
+    const [editorValue, setEditorValue] = useState('');
+
+    const handleEditorChange = (value) => {
+        setEditorValue(value);
+    };
+
+    const handleButtonClick = () => {
+        localStorage.setItem("data", editorValue);
+        window.dispatchEvent(new Event("DataChange"));
+    };
+
+    useEffect(() => {
+        setEditorValue(JSON.stringify(array, null, 2))
+    }, [])
 
     return (
         <div className="space-y-[5%] px-[8%] py-[2%]">
@@ -123,11 +137,11 @@ const Sandbox = () => {
                             <label htmlFor="my-drawer" className="drawer-overlay"></label>
                             <div className="bg-base-100 h-screen p-4">
                                 <h1 className="mb-2 text-xl">Set data here like the example here</h1>
-                                <Editor height="50vh" width="60vh" options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} />
+                                <Editor height="50vh" width="60vh" onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} />
                                 <div className="mt-2 space-y-4">
                                     <p className="text-sm">Ne peut contenir que 4 éléments avec des titres tous differents</p>
                                     <div className="flex justify-end">
-                                        <button className="btn btn-info">Set data</button>
+                                        <button onClick={handleButtonClick} className="btn btn-info">Set data</button>
                                     </div>
                                 </div>
                             </div>

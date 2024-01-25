@@ -33,20 +33,21 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     useEffect(() => {
         handleCardClick(activeCard)
         const handleLocalStorageUpdate = () => {
+            console.log(JSON.parse(localStorage.getItem("data")))
             try {
-                const newData = JSON.parse(localStorage.getItem("data")).reduce((acc, currentValue) => {
-                    acc[currentValue.toLowerCase()] = { ...initialCardDimensions }
-                    return acc
-                }, {})
-                setCards(newData)
+                const updatedArray = JSON.parse(localStorage.getItem("data")).map(item => ({
+                    ...initialCardDimensions,
+                    ...item
+                }));
+                setCards(updatedArray)
             } catch (error) {
                 console.error("Error parsing local storage data:", error)
             }
         }
-        /* window.addEventListener("DataChange", handleLocalStorageUpdate)
+        window.addEventListener("DataChange", handleLocalStorageUpdate)
         return () => {
             window.removeEventListener("DataChange", handleLocalStorageUpdate)
-        } */
+        }
     }, [data, activeCard, isMobile])
 
     // Handle card click and update dimensions
@@ -117,7 +118,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
                                         <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="image"/>}
+                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="image" />}
                                     </div>
                                     {activeCard === value.title && (
                                         <p className="line-clamp-[8] text-justify">
