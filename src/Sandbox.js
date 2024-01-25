@@ -15,7 +15,14 @@ const checkForDuplicates = (array) => {
 }
 
 const Sandbox = () => {
-    const array = ["Un", "Deux", "Trois", "Quatre"]
+    const array = [
+        { title: "Title1", description: "Description1" },
+        { title: "Title2", description: "Description2" },
+        { title: "Title3", description: "Description3" },
+        { title: "Title4", description: "Description4" }
+    ];
+    const array1 = ["Un","Deux","Trois","Quatre"];
+
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
     const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded=false tension={120} friction={10} />`)
