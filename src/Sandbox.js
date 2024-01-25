@@ -16,12 +16,11 @@ const checkForDuplicates = (array) => {
 
 const Sandbox = () => {
     const array = [
-        { title: "Title1", description: "Description1" },
-        { title: "Title2", description: "Description2" },
-        { title: "Title3", description: "Description3" },
-        { title: "Title4", description: "Description4" }
+        { title: "Title1", description: "Description1", image: "https://placehold.co/600x400" },
+        { title: "Title2", description: "Description2", image: "https://placehold.co/600x400" },
+        { title: "Title3", description: "Description3", image: "https://placehold.co/600x400" },
+        { title: "Title4", description: "Description4", image: "https://placehold.co/600x400" }
     ];
-    const array1 = ["Un","Deux","Trois","Quatre"];
 
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
