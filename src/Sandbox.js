@@ -105,8 +105,8 @@ const Sandbox = () => {
                                 <span className="text-xl font-bold">Data</span>
                             </div>
                             <div className="flex gap-2">
-                                <input id="dataInputRef" type="text" placeholder={array.join(",")} className="input input-bordered w-full max-w-xs" />
-                                <button onClick={() => handleData()} className="btn btn-info">
+                                <input disabled id="dataInputRef" type="text" placeholder={"Under maintenance"} className="input input-bordered w-full max-w-xs" />
+                                <button disabled onClick={() => handleData()} className="btn btn-info">
                                     Set
                                 </button>
                             </div>
