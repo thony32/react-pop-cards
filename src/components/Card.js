@@ -110,9 +110,8 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                         <div key={key} className={getCardClasses(key)} ref={parentCard}>
                             <animated.div
                                 ref={activeCard === value.title ? activeCardRef : null}
-                                // style={{ width : "6rem" , height : "6rem" }}
                                 style={animatedStyles[key]}
-                                onClick={() => handleCardClick(key)}
+                                onClick={() => handleCardClick(value.title)}
                                 className={`${activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${bgColor} ${isRounded ? " rounded-2xl" : " rounded-none"}`}
                             >
                                 <div className="space-y-3">
