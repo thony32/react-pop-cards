@@ -89,7 +89,7 @@ const Sandbox = () => {
     }
 
     return (
-        <div className="space-y-[5%] p-8">
+        <div className="space-y-[5%] px-[8%] py-[2%]">
             <div className="grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
                     {/* for data */}
@@ -112,36 +112,42 @@ const Sandbox = () => {
                         </label>
                     </div>
                     {/* for dispositon */}
-                    <div>
-                        <span className="text-xl font-bold">Disposition (default : LeftRight)</span>
-                        <div className="form-control">
-                            <label className="label cursor-pointer space-x-5">
-                                <span className="label-text">Left to right</span>
-                                <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
-                            </label>
+                    <div className="space-y-3">
+                        <div>
+                            <h1 className="text-xl font-bold">Disposition (default : LeftRight)</h1>
                         </div>
-                        <div className="form-control">
-                            <label className="label cursor-pointer space-x-5">
-                                <span className="label-text">Right to left</span>
-                                <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
-                            </label>
-                        </div>
-                        <div className="form-control">
-                            <label className="label cursor-pointer space-x-5">
-                                <span className="label-text">Top to bottom</span>
-                                <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"} onChange={handleDispositionChange} />
-                            </label>
-                        </div>
-                        <div className="form-control">
-                            <label className="label cursor-pointer space-x-5">
-                                <span className="label-text">Bottom to top</span>
-                                <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"} onChange={handleDispositionChange} />
-                            </label>
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="form-control">
+                                <label className="label cursor-pointer space-x-5">
+                                    <span className="label-text">Left to right</span>
+                                    <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer space-x-5">
+                                    <span className="label-text">Right to left</span>
+                                    <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer space-x-5">
+                                    <span className="label-text">Top to bottom</span>
+                                    <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"} onChange={handleDispositionChange} />
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label cursor-pointer space-x-5">
+                                    <span className="label-text">Bottom to top</span>
+                                    <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"} onChange={handleDispositionChange} />
+                                </label>
+                            </div>
                         </div>
                     </div>
                     {/* for radius */}
-                    <div>
-                        <span className="text-xl font-bold">Radius (default : false)</span>
+                    <div className="space-y-3">
+                        <div>
+                            <h1 className="text-xl font-bold">Radius (default : false)</h1>
+                        </div>
                         <div className="form-control">
                             <label className="cursor-pointer label space-x-5">
                                 <span className="label-text">Is Rounded</span>
@@ -150,19 +156,23 @@ const Sandbox = () => {
                         </div>
                     </div>
                     {/* for tension */}
-                    <div className="flex flex-col gap-4">
-                        <span className="text-xl font-bold">Tension and friction</span>
+                    <div className="space-y-3">
                         <div>
-                            <label>Tension:</label>
-                            <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
+                            <h1 className="text-xl font-bold">Tension and friction</h1>
                         </div>
-                        <div>
-                            <label>Friction:</label>
-                            <input type="number" value={tempFriction} placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
+                        <div className="flex items-end gap-3">
+                            <div>
+                                <label>Tension:</label>
+                                <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
+                            </div>
+                            <div>
+                                <label>Friction:</label>
+                                <input type="number" value={tempFriction} placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
+                            </div>
+                            <button className="btn btn-info" onClick={setTensionAndFriction}>
+                                Set
+                            </button>
                         </div>
-                        <button className="btn btn-info" onClick={setTensionAndFriction}>
-                            Set
-                        </button>
                     </div>
                 </div>
                 <div className="col-span-6">
