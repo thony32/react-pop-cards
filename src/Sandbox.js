@@ -47,11 +47,6 @@ const Sandbox = () => {
     }
 
     const updateCode = (newDisposition, newIsRounded, newTension, newFriction) => {
-        console.log(newDisposition)
-        console.log(newIsRounded)
-        console.log(newTension)
-        console.log(newFriction)
-
         let parts = []
 
         if (newDisposition !== "") {
