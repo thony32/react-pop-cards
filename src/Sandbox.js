@@ -1,5 +1,6 @@
-import Card from "./components/Card"
-import React, { useState } from "react"
+import Card from "./components/Card";
+import React, { useState } from "react";
+import Editor from "@monaco-editor/react";
 
 const checkForDuplicates = (array) => {
     let valuesAlreadySeen = []
@@ -94,28 +95,43 @@ const Sandbox = () => {
         setCode(codeString)
     }
 
+    // editor options
+    const editorOptions = {
+        minimap: {
+            enabled: false
+        },
+        scrollbar: {
+            horizontal: 'hidden',
+            vertical: 'hidden'
+        },
+        readOnly: true,
+        scrollBeyondLastLine: false
+    };
+
     return (
         <div className="space-y-[5%] px-[8%] py-[2%]">
             <div className="grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
                     {/* for data */}
-                    <div>
-                        <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="text-xl font-bold">Data</span>
+                    <div className="drawer">
+                        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                        <div className="drawer-content">
+                            {/* Page content here */}
+                            <label htmlFor="my-drawer" className="btn btn-info drawer-button">Data</label>
+                        </div>
+                        <div className="drawer-side z-50">
+                            <label htmlFor="my-drawer" className="drawer-overlay"></label>
+                            <div className="bg-base-100 h-screen p-4">
+                                <h1 className="mb-2 text-xl">Set data here like the example here</h1>
+                                <Editor height="50vh" width="60vh" options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} />
+                                <div className="mt-2 space-y-4">
+                                    <p className="text-sm">Ne peut contenir que 4 éléments avec des titres tous differents</p>
+                                    <div className="flex justify-end">
+                                        <button className="btn btn-info">Set data</button>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="flex gap-2">
-                                <input disabled id="dataInputRef" type="text" placeholder={"Under maintenance"} className="input input-bordered w-full max-w-xs" />
-                                <button disabled onClick={() => handleData()} className="btn btn-info">
-                                    Set
-                                </button>
-                            </div>
-                            <div className="label">
-                                <span className="label-text-alt">
-                                    Séparer par <kbd className="kbd kbd-xs">,</kbd> (ex: un,deux,trois,quatre)
-                                </span>
-                            </div>
-                        </label>
+                        </div>
                     </div>
                     {/* for dispositon */}
                     <div className="space-y-3">
