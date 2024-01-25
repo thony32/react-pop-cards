@@ -1,14 +1,17 @@
-import Card from "./components/Card";
-import React, { useEffect, useState } from "react";
-import Editor from "@monaco-editor/react";
+import Card from "./components/Card"
+import React, { useEffect, useState, useMemo } from "react"
+import Editor from "@monaco-editor/react"
 
 const Sandbox = () => {
-    const array = [
-        { title: "Title1", description: "Description1", image: "https://placehold.co/600x400" },
-        { title: "Title2", description: "Description2", image: "https://placehold.co/600x400" },
-        { title: "Title3", description: "Description3", image: "https://placehold.co/600x400" },
-        { title: "Title4", description: "Description4", image: "https://placehold.co/600x400" }
-    ];
+    const array = useMemo(
+        () => [
+            { title: "Title1", description: "Description1", image: "https://placehold.co/600x400" },
+            { title: "Title2", description: "Description2", image: "https://placehold.co/600x400" },
+            { title: "Title3", description: "Description3", image: "https://placehold.co/600x400" },
+            { title: "Title4", description: "Description4", image: "https://placehold.co/600x400" },
+        ],
+        []
+    )
 
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
@@ -71,29 +74,29 @@ const Sandbox = () => {
     // editor options
     const editorOptions = {
         minimap: {
-            enabled: false
+            enabled: false,
         },
         scrollbar: {
-            horizontal: 'hidden',
-            vertical: 'hidden'
+            horizontal: "hidden",
+            vertical: "hidden",
         },
-        scrollBeyondLastLine: false
-    };
+        scrollBeyondLastLine: false,
+    }
 
-    const [editorValue, setEditorValue] = useState('');
+    const [editorValue, setEditorValue] = useState("")
 
     const handleEditorChange = (value) => {
-        setEditorValue(value);
-    };
+        setEditorValue(value)
+    }
 
     const handleButtonClick = () => {
-        localStorage.setItem("data", editorValue);
-        window.dispatchEvent(new Event("DataChange"));
-    };
+        localStorage.setItem("data", editorValue)
+        window.dispatchEvent(new Event("DataChange"))
+    }
 
     useEffect(() => {
         setEditorValue(JSON.stringify(array, null, 2))
-    }, [])
+    }, [array])
 
     return (
         <div className="space-y-[5%] px-[8%] py-[2%]">
@@ -104,7 +107,9 @@ const Sandbox = () => {
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
                             {/* Page content here */}
-                            <label htmlFor="my-drawer" className="btn btn-info drawer-button">Data</label>
+                            <label htmlFor="my-drawer" className="btn btn-info drawer-button">
+                                Data
+                            </label>
                         </div>
                         <div className="drawer-side z-50">
                             <label htmlFor="my-drawer" className="drawer-overlay"></label>
@@ -114,7 +119,9 @@ const Sandbox = () => {
                                 <div className="mt-2 space-y-4">
                                     <p className="text-sm">Ne peut contenir que 4 éléments avec des titres tous differents</p>
                                     <div className="flex justify-end">
-                                        <button onClick={handleButtonClick} className="btn btn-info">Set data</button>
+                                        <button onClick={handleButtonClick} className="btn btn-info">
+                                            Set data
+                                        </button>
                                     </div>
                                 </div>
                             </div>
