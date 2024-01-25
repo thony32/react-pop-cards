@@ -67,7 +67,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     // Animated styles for each card
     const animatedStyles = Object.keys(cards).reduce((acc, cardKey) => {
         acc[cardKey] = useSpring({
-            to: { width: cards[cardKey[0]].width.toString(), height: cards[cardKey[0]].height.toString() },
+            to: { width: cards[cardKey[0]].width.toString(), height: cards[cardKey[0]].height.toString(), backgroundColor: bgColor },
             config: { tension: tension, friction: friction },
         })
         return acc
@@ -110,20 +110,22 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                 <div className="grid grid-cols-2 gap-2">
                     {Object.entries(cards).map(([key, value]) => (
                         <div key={key} className={getCardClasses(key)} ref={parentCard}>
-                            <animated.div
-                                ref={activeCard === value.title ? activeCardRef : null}
-                                style={animatedStyles[key]}
-                                onClick={() => handleCardClick(value.title)}
-                                className={`${activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${bgColor} ${isRounded ? " rounded-2xl" : " rounded-none"}`}
-                            >
-                                <div className="space-y-3">
-                                    <div className="flex justify-between items-center">
-                                        <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
+                            <div>
+                                <animated.div
+                                    ref={activeCard === value.title ? activeCardRef : null}
+                                    style={animatedStyles[key]}
+                                    onClick={() => handleCardClick(value.title)}
+                                    className={`${activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${isRounded ? " rounded-2xl" : " rounded-none"}`}
+                                >
+                                    <div className="space-y-3">
+                                        <div className="flex justify-between items-center">
+                                            <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
+                                            {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
+                                        </div>
+                                        {activeCard === value.title && <p className="line-clamp-[8] text-justify">{value.description}</p>}
                                     </div>
-                                    {activeCard === value.title && <p className="line-clamp-[8] text-justify">{value.description}</p>}
-                                </div>
-                            </animated.div>
+                                </animated.div>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -145,7 +147,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
     disposition: "LeftRight",
-    bgColor: "bg-gray-200",
+    bgColor: "#000000",
     isRounded: false,
     tension: 120,
     friction: 10,

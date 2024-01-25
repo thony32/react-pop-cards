@@ -20,6 +20,14 @@ const Sandbox = () => {
     const [friction, setFriction] = useState()
     const [tempTension, setTempTension] = useState(120)
     const [tempFriction, setTempFriction] = useState(10)
+    const [bgColor, setBgColor] = useState("#000000")
+
+    const handleBgColorChange = (event) => {
+        setBgColor(document.getElementById("colorInput").value)
+        updateCode(disposition, bgColor, radius, tempTension, tempFriction)
+    }
+
+    console.log(bgColor)
 
     const handleTensionChange = (event) => {
         setTempTension(event.target.value)
@@ -32,21 +40,21 @@ const Sandbox = () => {
     const setTensionAndFriction = () => {
         setTension(tempTension)
         setFriction(tempFriction)
-        updateCode(disposition, radius, tempTension, tempFriction)
+        updateCode(disposition, bgColor, radius, tempTension, tempFriction)
     }
 
     const handleDispositionChange = (event) => {
         const newDisposition = event.target.value
         setDisposition(newDisposition)
-        updateCode(newDisposition, radius, tempTension, tempFriction)
+        updateCode(newDisposition, bgColor, radius, tempTension, tempFriction)
     }
 
     const handleRadiusChange = () => {
         setRadius(!radius)
-        updateCode(disposition, !radius, tempTension, tempFriction)
+        updateCode(disposition, bgColor, !radius, tempTension, tempFriction)
     }
 
-    const updateCode = (newDisposition, newIsRounded, newTension, newFriction) => {
+    const updateCode = (newDisposition, newBackground, newIsRounded, newTension, newFriction) => {
         let parts = []
 
         if (newDisposition !== "") {
@@ -60,6 +68,10 @@ const Sandbox = () => {
             parts.push(`isRounded=${newIsRounded}`)
         } else {
             parts.push(`isRounded=false`)
+        }
+
+        if (newBackground !== "") {
+            parts.push(`bgColor="${newBackground}"`)
         }
 
         let codeString = `<Card data={array} ${parts.join(" ")} />`
@@ -183,11 +195,18 @@ const Sandbox = () => {
                             <button className="btn btn-info" onClick={setTensionAndFriction}>
                                 Set
                             </button>
+                            <div>
+                                <label>Color:</label>
+                                <input type="color" placeholder="120" className="input input-bordered w-full max-w-xs" id="colorInput"/>
+                            </div>
+                            <button className="btn btn-info" onClick={handleBgColorChange}>
+                                Set color
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className="col-span-6">
-                    <Card data={array} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
+                    <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
                 </div>
             </div>
             <div className="grid grid-cols-2">
