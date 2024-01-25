@@ -30,24 +30,24 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     // active card
     const [activeCard, setActiveCard] = useState(data[0]["title"].toLowerCase())
 
-    // useEffect(() => {
-    //     handleCardClick(activeCard)
-    //     const handleLocalStorageUpdate = () => {
-    //         try {
-    //             const newData = JSON.parse(localStorage.getItem("data")).reduce((acc, currentValue) => {
-    //                 acc[currentValue.toLowerCase()] = { ...initialCardDimensions }
-    //                 return acc
-    //             }, {})
-    //             setCards(newData)
-    //         } catch (error) {
-    //             console.error("Error parsing local storage data:", error)
-    //         }
-    //     }
-    //     window.addEventListener("DataChange", handleLocalStorageUpdate)
-    //     return () => {
-    //         window.removeEventListener("DataChange", handleLocalStorageUpdate)
-    //     }
-    // }, [data, activeCard, isMobile])
+    useEffect(() => {
+        handleCardClick(activeCard)
+        const handleLocalStorageUpdate = () => {
+            try {
+                const newData = JSON.parse(localStorage.getItem("data")).reduce((acc, currentValue) => {
+                    acc[currentValue.toLowerCase()] = { ...initialCardDimensions }
+                    return acc
+                }, {})
+                setCards(newData)
+            } catch (error) {
+                console.error("Error parsing local storage data:", error)
+            }
+        }
+        /* window.addEventListener("DataChange", handleLocalStorageUpdate)
+        return () => {
+            window.removeEventListener("DataChange", handleLocalStorageUpdate)
+        } */
+    }, [data, activeCard, isMobile])
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
