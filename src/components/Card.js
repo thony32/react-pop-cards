@@ -119,7 +119,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                 <div className="space-y-3">
                                     <div className="flex justify-between items-center">
                                         <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="image" />}
+                                        {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
                                     </div>
                                     {activeCard === value.title && (
                                         <p className="line-clamp-[8] text-justify">
