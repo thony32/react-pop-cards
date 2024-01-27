@@ -209,7 +209,7 @@ const Sandbox = () => {
                     <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
                 </div>
             </div>
-            <div className="max-sm:flex max-sm:flex-col grid grid-cols-2">
+            <div className="max-sm:flex max-sm:flex-col max-sm:justify-center grid grid-cols-2">
                 <div className="max-sm:p-2 p-8">
                     <h1 className="text-3xl font-bold mb-3">Code preview</h1>
                     <div>
@@ -221,9 +221,9 @@ const Sandbox = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <div className="flex max-sm:flex-col justify-center">
-                        <h1 className="max-sm:text-xl text-3xl font-bold text-center">Installation</h1>
-                        <div className="mockup-code max-sm:scale-75">
+                    <div className="flex flex-col justify-center max-sm:scale-[.85]">
+                        <h1 className="text-3xl font-bold">Installation :</h1>
+                        <div className="mockup-code">
                             <pre data-prefix="$">
                                 <code>npm install react-pop-cards core-js</code>
                             </pre>
