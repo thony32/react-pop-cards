@@ -122,7 +122,7 @@ const Sandbox = () => {
                             <label htmlFor="my-drawer" className="drawer-overlay"></label>
                             <div className="bg-base-100 h-screen p-2">
                                 <h1 className="mb-2 sm:text-xl uppercase font-bold">Set data here like the example here :</h1>
-                                <Editor height="50vh" width="100%" onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90"/>
+                                <Editor height="50vh" width={`${isMobile ? "30vvw" :"50vh"}`} onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90"/>
                                 <div className="mt-2 space-y-4">
                                     <p className="text-sm">Only 4 elements with different titles</p>
                                     <div className="flex justify-end">
