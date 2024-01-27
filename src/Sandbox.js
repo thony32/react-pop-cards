@@ -139,7 +139,7 @@ const Sandbox = () => {
                     {/* for dispositon */}
                     <div className="space-y-3">
                         <div>
-                            <h1 className="text-xl font-bold">Disposition (default : LeftRight)</h1>
+                            <h1 className="text-xl font-bold">Disposition (default : LeftRight. But for mobile devices "LeftRight" is set as TopBottom and "RightLeft" is set as BottomTop)</h1>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                             <div className={`${isMobile ? "hidden" :"form-control"}`}>
@@ -183,7 +183,7 @@ const Sandbox = () => {
                     {/* for tension */}
                     <div className="space-y-3">
                         <div>
-                            <h1 className="text-xl font-bold">Tension and friction</h1>
+                            <h1 className="text-xl font-bold">Tension and friction (default tension: 120, default friction: 10)</h1>
                         </div>
                         <div className="flex max-sm:flex-col max-sm:items-start items-end gap-3">
                             <div>
