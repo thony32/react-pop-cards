@@ -1,7 +1,7 @@
 import Card from "./components/Card"
 import React, { useEffect, useState, useMemo } from "react"
 import Editor from "@monaco-editor/react"
-// import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
 
 const Sandbox = () => {
     const array = useMemo(
@@ -14,7 +14,7 @@ const Sandbox = () => {
         []
     )
 
-    // const isMobile = useMediaQuery({ query: '(max-width: 640px)' })
+    const isMobile = useMediaQuery({ query: '(max-width: 640px)' })
 
     const [disposition, setDisposition] = useState("LeftRight")
     const [radius, setRadius] = useState(false)
@@ -142,13 +142,13 @@ const Sandbox = () => {
                             <h1 className="text-xl font-bold">Disposition (default : LeftRight)</h1>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
-                            <div className="form-control">
+                            <div className={`${isMobile ? "hidden" :"form-control"}`}>
                                 <label className="label cursor-pointer space-x-5">
                                     <span className="label-text">Left to right</span>
                                     <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
                                 </label>
                             </div>
-                            <div className="form-control">
+                            <div className={`${isMobile ? "hidden" :"form-control"}`}>
                                 <label className="label cursor-pointer space-x-5">
                                     <span className="label-text">Right to left</span>
                                     <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
