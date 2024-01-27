@@ -2,6 +2,7 @@ import Card from "./components/Card"
 import React, { useEffect, useState, useMemo } from "react"
 import Editor from "@monaco-editor/react"
 import { useMediaQuery } from 'react-responsive';
+import { ReactTyped } from "react-typed";
 
 const Sandbox = () => {
     const array = useMemo(
@@ -106,7 +107,7 @@ const Sandbox = () => {
     }, [array])
 
     return (
-        <div className="space-y-[5%] px-[8%] py-[2%]">
+        <div className="space-y-[5%] px-[8%] py-[2%] relative">
             <div>
                 <h1 className="text-7xl font-fortnite">React pop cards</h1>
             </div>
@@ -140,7 +141,7 @@ const Sandbox = () => {
                     {/* for dispositon */}
                     <div className="space-y-3">
                         <div>
-                            <h1 className="text-xl font-bold">Disposition (default : LeftRight. But for mobile devices "LeftRight" is set as TopBottom and "RightLeft" is set as BottomTop)</h1>
+                            <h1 className="text-2xl font-fortnite">Disposition (default : LeftRight)</h1>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                             <div className={`${isMobile ? "hidden" : "form-control"}`}>
@@ -168,11 +169,14 @@ const Sandbox = () => {
                                 </label>
                             </div>
                         </div>
+                        <div className="text-xs text-justify">
+                            But for mobile devices "LeftRight" is set as TopBottom and "RightLeft" is set as BottomTop
+                        </div>
                     </div>
                     {/* for radius */}
                     <div className="space-y-3">
                         <div>
-                            <h1 className="text-xl font-bold">Radius (default : false)</h1>
+                            <h1 className="text-2xl font-fortnite">Radius (default : false)</h1>
                         </div>
                         <div className="form-control">
                             <label className="cursor-pointer label space-x-5">
@@ -184,7 +188,7 @@ const Sandbox = () => {
                     {/* for tension */}
                     <div className="space-y-3">
                         <div>
-                            <h1 className="text-xl font-bold">Tension and friction (default tension: 120, default friction: 10)</h1>
+                            <h1 className="text-2xl font-fortnite">Tension and friction (default tension: 120, default friction: 10)</h1>
                         </div>
                         <div className="flex max-sm:flex-col max-sm:items-start items-end gap-3">
                             <div>
@@ -212,7 +216,7 @@ const Sandbox = () => {
                     <div className="translate-y-[0%]">
                         {<Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />}
                     </div>
-                    <div className="w-full flex justify-center absolute -bottom-10">
+                    <div className="w-full flex justify-center absolute -bottom-[13%]">
                         <div>
                             <h1 className="text-3xl font-fortnite mb-1">Code preview</h1>
                             <div>
@@ -226,36 +230,23 @@ const Sandbox = () => {
                     </div>
                 </div>
             </div>
-            {/*    <div className="max-sm:flex max-sm:flex-col max-sm:justify-center grid grid-cols-2">
+            <div className="absolute -top-[10%] right-3">
                 <div className="flex justify-center">
                     <div className="flex flex-col justify-center max-sm:scale-[.85]">
-                        <h1 className="text-3xl font-bold">Installation :</h1>
-                        <div className="mockup-code">
+                        <h1 className="text-2xl font-fortnite">Installation :</h1>
+                        <div className="mockup-code w-[25.5rem]">
                             <pre data-prefix="$">
-                                <code>npm install react-pop-cards core-js</code>
-                            </pre>
-                            <pre>
-                                <code>or</code>
-                            </pre>
-                            <pre data-prefix="$">
-                                <code>yarn add react-pop-cards core-js</code>
-                            </pre>
-                            <pre>
-                                <code>or</code>
-                            </pre>
-                            <pre data-prefix="$">
-                                <code>pnpm add react-pop-cards core-js</code>
-                            </pre>
-                            <pre>
-                                <code>or</code>
-                            </pre>
-                            <pre data-prefix="$">
-                                <code>bun add react-pop-cards core-js</code>
+                                <ReactTyped strings={[
+                                    "npm install react-pop-cards core-js",
+                                    "pnpm install react-pop-cards core-js",
+                                    "bun install react-pop-cards core-js",
+                                    "yarn add react-pop-cards core-js"
+                                ]} typeSpeed={40} loop={true} />
                             </pre>
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
