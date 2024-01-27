@@ -14,7 +14,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     // default content div classes
     const cardDivClass = "col-span-3 flex justify-center items-center duration-100"
     const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100"
-    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center w-[5rem] h-[5rem] shadow-md"
+    const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center max-sm:w-[4rem] max-sm:h-[4rem] w-[5rem] h-[5rem] shadow-lg"
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
@@ -56,7 +56,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         const updatedCards = cards.map((card) => {
             return {
                 ...card,
-                width: cardKey === card.title ? "20rem" : initialCardDimensions.width,
+                width: cardKey === card.title ? (isMobile ? "11rem" : "20rem") : initialCardDimensions.width,
                 height: cardKey === card.title ? (isMobile ? "11rem" : "20rem") : initialCardDimensions.height,
             }
         })
@@ -92,17 +92,19 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const getDisposition = (disposition) => {
         switch (disposition) {
             case "LeftRight":
-                return `${isMobile ? "flex flex-col justify-center items-center gap-[20%] h-full" : "grid grid-cols-5 h-full"}`
+                return `${isMobile ? "flex flex-col justify-center items-center gap-8 h-full" : "grid grid-cols-5 h-full"}`
             case "RightLeft":
-                return `${isMobile ? "flex flex-col-reverse justify-center items-center gap-[20%] h-full" : "grid grid-cols-5 h-full"}`
+                return `${isMobile ? "flex flex-col-reverse justify-center items-center gap-8 h-full" : "grid grid-cols-5 h-full"}`
             case "TopBottom":
-                return "flex flex-col justify-center items-center gap-[20%] h-full"
+                return "flex flex-col justify-center items-center gap-8 h-full"
             case "BottomTop":
-                return "flex flex-col-reverse justify-center items-center gap-[20%] h-full"
+                return "flex flex-col-reverse justify-center items-center gap-8 h-full"
             default:
                 return "grid grid-cols-5 h-full"
         }
     }
+
+    console.log(getDisposition(disposition))
 
     return (
         <div className={getDisposition(disposition)}>
@@ -117,12 +119,12 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                     onClick={() => handleCardClick(value.title)}
                                     className={`${activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${isRounded ? " rounded-2xl" : " rounded-none"}`}
                                 >
-                                    <div className="space-y-3">
-                                        <div className="flex justify-between items-center">
-                                            <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                            {activeCard === value.title && value.image != null && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
+                                    <div className={`${activeCard === value.title ? "min-h-full" : "max-sm:space-y-1 space-y-3"}`}>
+                                        <div className="flex max-sm:flex-col-reverse justify-between items-center">
+                                            <label className={(activeCard === value.title ? "max-sm:text-xl text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
+                                            {activeCard === value.title && value.image != null && <img className="max-sm:w-12 max-sm:h-12 w-20 h-20" src={value.image} alt="imageCard" />}
                                         </div>
-                                        {activeCard === value.title && <p className="line-clamp-[8] text-justify">{value.description}</p>}
+                                        {activeCard === value.title && <p className="line-clamp-[8] text-justify max-sm:text-xs">{value.description}</p>}
                                     </div>
                                 </animated.div>
                             </div>
@@ -132,7 +134,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
             </div>
             <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` ${miniCardDivClass}`}>
                 {Object.entries(cards).map(([key, value]) => (
-                    <div key={key} onClick={() => handleCardClick(value.title)} className={`${activeCard === value.title ? "scale-110 shadow-xl" : "scale-90"} ${miniCardClass} ${isRounded ? "rounded-2xl" : "rounded-none"}`}>
+                    <div key={key} onClick={() => handleCardClick(value.title)} className={`${activeCard === value.title ? "scale-105 shadow-xl" : "scale-90"} ${miniCardClass} ${isRounded ? "rounded-2xl" : "rounded-none"}`}>
                         <label className="text-center text-xs capitalize">{value.title}</label>
                     </div>
                 ))}
