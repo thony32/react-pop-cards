@@ -7,10 +7,10 @@ import "../index.css"
 import PropTypes from "prop-types"
 
 const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
-    const isMobile = useMediaQuery({ query: "max-width: 600px" })
+    const isMobile = useMediaQuery({ query: "(max-width: 640px)" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
-
+    
     // default content div classes
     const cardDivClass = "col-span-3 flex justify-center items-center duration-100"
     const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100"
@@ -18,9 +18,9 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
-
+    
     // assign the data to the cards
-
+    
     const newArray = data.map((item) => ({
         ...initialCardDimensions,
         ...item,
@@ -92,9 +92,9 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const getDisposition = (disposition) => {
         switch (disposition) {
             case "LeftRight":
-                return "grid grid-cols-5 h-full"
+                return `${isMobile ? "flex flex-col justify-center items-center gap-[20%] h-full" : "grid grid-cols-5 h-full"}`
             case "RightLeft":
-                return "grid grid-cols-5 h-full"
+                return `${isMobile ? "flex flex-col-reverse justify-center items-center gap-[20%] h-full" : "grid grid-cols-5 h-full"}`
             case "TopBottom":
                 return "flex flex-col justify-center items-center gap-[20%] h-full"
             case "BottomTop":
@@ -120,7 +120,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                     <div className="space-y-3">
                                         <div className="flex justify-between items-center">
                                             <label className={(activeCard === value.title ? "text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                            {(activeCard === value.title && value.image != null) && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
+                                            {activeCard === value.title && value.image != null && <img className="w-20 h-20" src={value.image} alt="imageCard" />}
                                         </div>
                                         {activeCard === value.title && <p className="line-clamp-[8] text-justify">{value.description}</p>}
                                     </div>

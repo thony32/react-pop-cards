@@ -1,6 +1,7 @@
 import Card from "./components/Card"
 import React, { useEffect, useState, useMemo } from "react"
 import Editor from "@monaco-editor/react"
+import { useMediaQuery } from 'react-responsive';
 
 const Sandbox = () => {
     const array = useMemo(
@@ -12,6 +13,8 @@ const Sandbox = () => {
         ],
         []
     )
+
+    const isMobile = useMediaQuery({ query: '(max-width: 640px)' })
 
     const [disposition, setDisposition] = useState("")
     const [radius, setRadius] = useState()
@@ -106,10 +109,10 @@ const Sandbox = () => {
 
     return (
         <div className="space-y-[5%] px-[8%] py-[2%]">
-            <div className="grid grid-cols-8 gap-[5%]">
+            <div className="max-sm:flex max-sm:flex-col grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
                     {/* for data */}
-                    <div className="drawer">
+                    <div className="drawer lg:drawer-open">
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
                             {/* Page content here */}
@@ -119,11 +122,11 @@ const Sandbox = () => {
                         </div>
                         <div className="drawer-side z-50">
                             <label htmlFor="my-drawer" className="drawer-overlay"></label>
-                            <div className="bg-base-100 h-screen p-4">
-                                <h1 className="mb-2 text-xl">Set data here like the example here</h1>
-                                <Editor height="50vh" width="60vh" onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} />
+                            <div className="bg-base-100 h-screen p-2">
+                                <h1 className="mb-2 text-xl uppercase font-bold">Set data here like the example here :</h1>
+                                <Editor height="50vh" width="100%" onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} />
                                 <div className="mt-2 space-y-4">
-                                    <p className="text-sm">Ne peut contenir que 4 éléments avec des titres tous differents</p>
+                                    <p className="text-sm">Only 4 elements with different titles</p>
                                     <div className="flex justify-end">
                                         <button onClick={handleButtonClick} className="btn btn-info">
                                             Set data
@@ -182,7 +185,7 @@ const Sandbox = () => {
                         <div>
                             <h1 className="text-xl font-bold">Tension and friction</h1>
                         </div>
-                        <div className="flex items-end gap-3">
+                        <div className="flex max-sm:flex-col max-sm:items-start items-end gap-3">
                             <div>
                                 <label>Tension:</label>
                                 <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
@@ -208,8 +211,8 @@ const Sandbox = () => {
                     <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
                 </div>
             </div>
-            <div className="grid grid-cols-2">
-                <div className="p-8">
+            <div className="max-sm:flex max-sm:flex-col grid grid-cols-2">
+                <div className="max-sm:p-2 p-8">
                     <h1 className="text-3xl font-bold mb-3">Code preview</h1>
                     <div>
                         <div className="mockup-code">
@@ -220,9 +223,9 @@ const Sandbox = () => {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <div>
-                        <h1 className="text-3xl font-bold mb-3">Installation</h1>
-                        <div className="mockup-code">
+                    <div className="flex max-sm:flex-col justify-center">
+                        <h1 className="max-sm:text-xl text-3xl font-bold text-center">Installation</h1>
+                        <div className="mockup-code max-sm:scale-75">
                             <pre data-prefix="$">
                                 <code>npm install react-pop-cards core-js</code>
                             </pre>
