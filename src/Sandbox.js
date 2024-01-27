@@ -112,7 +112,7 @@ const Sandbox = () => {
             <div className="max-sm:flex max-sm:flex-col grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
                     {/* for data */}
-                    <div className="drawer lg:drawer-open">
+                    <div className="drawer">
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
                             {/* Page content here */}
