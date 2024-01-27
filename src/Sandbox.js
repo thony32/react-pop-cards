@@ -31,8 +31,6 @@ const Sandbox = () => {
         updateCode(disposition, bgColor, radius, tempTension, tempFriction)
     }
 
-    console.log(bgColor)
-
     const handleTensionChange = (event) => {
         setTempTension(event.target.value)
     }

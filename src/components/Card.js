@@ -33,7 +33,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     useEffect(() => {
         handleCardClick(activeCard)
         const handleLocalStorageUpdate = () => {
-            console.log(JSON.parse(localStorage.getItem("data")))
+            // console.log(JSON.parse(localStorage.getItem("data")))
             try {
                 const updatedArray = JSON.parse(localStorage.getItem("data")).map((item) => ({
                     ...initialCardDimensions,
@@ -103,8 +103,6 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                 return "grid grid-cols-5 h-full"
         }
     }
-
-    console.log(getDisposition(disposition))
 
     return (
         <div className={getDisposition(disposition)}>
