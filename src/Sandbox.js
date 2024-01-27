@@ -20,7 +20,7 @@ const Sandbox = () => {
     const [friction, setFriction] = useState()
     const [tempTension, setTempTension] = useState(120)
     const [tempFriction, setTempFriction] = useState(10)
-    const [bgColor, setBgColor] = useState("#000000")
+    const [bgColor, setBgColor] = useState("#e5e7eb")
     const [editorValue, setEditorValue] = useState("")
 
     const handleBgColorChange = (event) => {
