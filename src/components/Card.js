@@ -119,7 +119,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                 >
                                     <div className={`${activeCard === value.title ? "min-h-full" : "max-sm:space-y-1 space-y-3"}`}>
                                         <div className="flex max-sm:flex-col-reverse justify-between items-center">
-                                            <label className={(activeCard === value.title ? "max-sm:text-xl text-5xl" : "text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
+                                            <label className={(activeCard === value.title ? "max-sm:text-xl text-5xl" : "max-sm:text-xs text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
                                             {activeCard === value.title && value.image != null && <img className="max-sm:w-12 max-sm:h-12 w-20 h-20" src={value.image} alt="imageCard" />}
                                         </div>
                                         {activeCard === value.title && <p className="line-clamp-[8] text-justify max-sm:text-xs">{value.description}</p>}
