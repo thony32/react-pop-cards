@@ -107,6 +107,9 @@ const Sandbox = () => {
 
     return (
         <div className="space-y-[5%] px-[8%] py-[2%]">
+            <div>
+                <h1 className="text-7xl font-fortnite">React pop cards</h1>
+            </div>
             <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
                     {/* for data */}
@@ -122,7 +125,7 @@ const Sandbox = () => {
                             <label htmlFor="my-drawer" className="drawer-overlay"></label>
                             <div className="bg-base-100 h-screen p-2">
                                 <h1 className="mb-2 sm:text-xl uppercase font-bold">Set data here like the example here :</h1>
-                                <Editor height="50vh" width={`${isMobile ? "30vvw" :"50vh"}`} onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90"/>
+                                <Editor height="50vh" width={`${isMobile ? "30vvw" : "50vh"}`} onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90" />
                                 <div className="mt-2 space-y-4">
                                     <p className="text-sm">Only 4 elements with different titles</p>
                                     <div className="flex justify-end">
@@ -140,13 +143,13 @@ const Sandbox = () => {
                             <h1 className="text-xl font-bold">Disposition (default : LeftRight. But for mobile devices "LeftRight" is set as TopBottom and "RightLeft" is set as BottomTop)</h1>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
-                            <div className={`${isMobile ? "hidden" :"form-control"}`}>
+                            <div className={`${isMobile ? "hidden" : "form-control"}`}>
                                 <label className="label cursor-pointer space-x-5">
                                     <span className="label-text">Left to right</span>
                                     <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
                                 </label>
                             </div>
-                            <div className={`${isMobile ? "hidden" :"form-control"}`}>
+                            <div className={`${isMobile ? "hidden" : "form-control"}`}>
                                 <label className="label cursor-pointer space-x-5">
                                     <span className="label-text">Right to left</span>
                                     <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
@@ -197,7 +200,7 @@ const Sandbox = () => {
                             </button>
                             <div>
                                 <label>Color:</label>
-                                <input type="color" placeholder="120" className="input input-bordered w-full max-w-xs" id="colorInput"/>
+                                <input type="color" placeholder="120" className="input input-bordered w-full max-w-xs" id="colorInput" />
                             </div>
                             <button className="btn btn-info" onClick={handleBgColorChange}>
                                 Set color
@@ -205,21 +208,25 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-6">
-                    <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
-                </div>
-            </div>
-            <div className="max-sm:flex max-sm:flex-col max-sm:justify-center grid grid-cols-2">
-                <div className="max-sm:p-2 p-8">
-                    <h1 className="text-3xl font-bold mb-3">Code preview</h1>
-                    <div>
-                        <div className="mockup-code">
-                            <pre>
-                                <code id="code">{code}</code>
-                            </pre>
+                <div className="col-span-6 relative">
+                    <div className="translate-y-[0%]">
+                        {<Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />}
+                    </div>
+                    <div className="w-full flex justify-center absolute -bottom-10">
+                        <div>
+                            <h1 className="text-3xl font-fortnite mb-1">Code preview</h1>
+                            <div>
+                                <div className="mockup-code">
+                                    <pre>
+                                        <code id="code">{code}</code>
+                                    </pre>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            {/*    <div className="max-sm:flex max-sm:flex-col max-sm:justify-center grid grid-cols-2">
                 <div className="flex justify-center">
                     <div className="flex flex-col justify-center max-sm:scale-[.85]">
                         <h1 className="text-3xl font-bold">Installation :</h1>
@@ -248,7 +255,7 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 }

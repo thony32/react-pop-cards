@@ -28,19 +28,18 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const [cards, setCards] = useState(newArray)
 
     // active card
-    const [activeCard, setActiveCard] = useState(data[0]["title"].toLowerCase())
+    const [activeCard, setActiveCard] = useState(data[0].title)
 
     useEffect(() => {
         handleCardClick(activeCard)
         const handleLocalStorageUpdate = () => {
-            // console.log(JSON.parse(localStorage.getItem("data")))
             try {
                 const updatedArray = JSON.parse(localStorage.getItem("data")).map((item) => ({
                     ...initialCardDimensions,
                     ...item,
                 }))
                 setCards(updatedArray)
-                setActiveCard("")
+                setActiveCard(updatedArray[0].title)
             } catch (error) {
                 console.error("Error parsing local storage data:", error)
             }
@@ -53,6 +52,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
+        console.log(cardKey);
         const updatedCards = cards.map((card) => {
             return {
                 ...card,
