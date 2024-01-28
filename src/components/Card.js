@@ -52,7 +52,6 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     // Handle card click and update dimensions
     const handleCardClick = (cardKey) => {
-        console.log(cardKey);
         const updatedCards = cards.map((card) => {
             return {
                 ...card,

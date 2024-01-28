@@ -51,8 +51,6 @@ const Sandbox = () => {
     updateCode(disposition, !radius);
   };
   const updateCode = (newDisposition, newIsRounded) => {
-    // console.log(newDisposition);
-    // console.log(newIsRounded);
     if (newDisposition !== null) {
       setCode("<Card data={array} disposition=\"".concat(newDisposition, "\" />"));
     }
