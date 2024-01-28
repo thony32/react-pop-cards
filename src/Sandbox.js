@@ -115,6 +115,20 @@ const Sandbox = () => {
             </div>
             <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-8 gap-[5%]">
                 <div className="col-span-2 space-y-10">
+                    <div className="font-semibold">
+                        <h1>You must install tailwindcss before using this component. Installation guide here : </h1>
+                        <div className="flex flex-col justify-center items-center gap-2">
+                            <div className="btn btn-primary">
+                                <a href="https://tailwindcss.com/docs/guides/create-react-app" rel="noopener noreferrer" target="_blank">TAILWINDCSS for create-react-app</a>
+                            </div>
+                            <div className="btn btn-primary">
+                                <a href="https://tailwindcss.com/docs/guides/vite" rel="noopener noreferrer" target="_blank">TAILWINDCSS for Vite</a>
+                            </div>
+                            <div className="btn btn-primary">
+                                <a href="https://tailwindcss.com/docs/guides/nextjs" rel="noopener noreferrer" target="_blank">TAILWINDCSS for Next.js</a>
+                            </div>
+                        </div>
+                    </div>
                     {/* for data */}
                     <div className="drawer">
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -209,12 +223,8 @@ const Sandbox = () => {
                             </button>
                             <div>
                                 <label>Color:</label>
-                                {/* <input type="color" placeholder="120" className="input input-bordered w-full max-w-xs" id="colorInput" /> */}
                                 <SwatchesPicker onChange={handleBgColorChange} />
                             </div>
-                            {/* <button className="btn btn-info" onClick={handleBgColorChange}>
-                                Set color
-                            </button> */}
                         </div>
                     </div>
                 </div>
