@@ -34,7 +34,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "rm -rf dist && NODE_ENV=production babel src --out-dir dist --copy-files && postcss src/index.css -o dist/index.css",
+        "build": "rm -rf dist && NODE_ENV=production babel src/index.js --out-dir dist --copy-files && babel src/components/Card.js --out-dir dist/components --copy-files && postcss src/index.css -o dist/index.css",
         "build:vercel": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
