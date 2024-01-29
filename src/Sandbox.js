@@ -22,7 +22,7 @@ const Sandbox = () => {
 
     const [disposition, setDisposition] = useState("LeftRight")
     const [radius, setRadius] = useState(false)
-    const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded=false tension={120} friction={10} bgColor="#e5e7eb"/>`)
+    const [code, setCode] = useState(`<Card data={array} disposition="LeftRight" isRounded={false} tension={120} friction={10} bgColor="#e5e7eb"/>`)
     const [tension, setTension] = useState()
     const [friction, setFriction] = useState()
     const [tempTension, setTempTension] = useState(120)
@@ -71,7 +71,7 @@ const Sandbox = () => {
         parts.push(`friction={${newFriction !== "" ? newFriction : "0"}}`)
 
         if (newIsRounded !== undefined) {
-            parts.push(`isRounded=${newIsRounded}`)
+            parts.push(`isRounded={${newIsRounded}}`)
         } else {
             parts.push(`isRounded=false`)
         }
