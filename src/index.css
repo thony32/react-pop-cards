@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'fortnite';
+    src: url('/public/fortnite.otf') format('opentype');
+}
