@@ -118,15 +118,15 @@ const Sandbox = () => {
                     <div className="font-semibold">
                         <h1>You must install tailwindcss before using this component. Installation guide here : </h1>
                         <div className="flex flex-col justify-center items-center gap-2">
-                            <div className="btn btn-primary">
-                                <a href="https://tailwindcss.com/docs/guides/create-react-app" rel="noopener noreferrer" target="_blank">TAILWINDCSS for create-react-app</a>
-                            </div>
-                            <div className="btn btn-primary">
-                                <a href="https://tailwindcss.com/docs/guides/vite" rel="noopener noreferrer" target="_blank">TAILWINDCSS for Vite</a>
-                            </div>
-                            <div className="btn btn-primary">
-                                <a href="https://tailwindcss.com/docs/guides/nextjs" rel="noopener noreferrer" target="_blank">TAILWINDCSS for Next.js</a>
-                            </div>
+                            <a href="https://tailwindcss.com/docs/guides/create-react-app" rel="noopener noreferrer" target="_blank" className="btn btn-primary">
+                                TAILWINDCSS for create-react-app
+                            </a>
+                            <a href="https://tailwindcss.com/docs/guides/vite" rel="noopener noreferrer" target="_blank" className="btn btn-primary">
+                                TAILWINDCSS for Vite
+                            </a>
+                            <a href="https://tailwindcss.com/docs/guides/nextjs" rel="noopener noreferrer" target="_blank" className="btn btn-primary">
+                                TAILWINDCSS for Next.js
+                            </a>
                         </div>
                     </div>
                     {/* for data */}
@@ -253,7 +253,7 @@ const Sandbox = () => {
                         </div>
                         <div className="mockup-code w-[25.5rem]">
                             <pre data-prefix="$">
-                                <ReactTyped strings={["npm install react-pop-cards core-js", "pnpm add react-pop-cards core-js", "bun add react-pop-cards core-js", "yarn add react-pop-cards core-js"]} typeSpeed={40} loop={true} />
+                                <ReactTyped strings={["npm install react-pop-cards", "pnpm add react-pop-cards", "bun add react-pop-cards", "yarn add react-pop-cards"]} typeSpeed={50} loop={true} />
                             </pre>
                         </div>
                     </div>

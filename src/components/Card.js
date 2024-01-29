@@ -11,7 +11,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
     
-    // default content div classes
+    // NOTE: default content div classes
     const cardDivClass = "col-span-3 flex justify-center items-center duration-100"
     const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100"
     const miniCardClass = "hover:scale-125 duration-200 cursor-pointer flex justify-center items-center max-sm:w-[4rem] max-sm:h-[4rem] w-[5rem] h-[5rem] shadow-lg"
@@ -19,7 +19,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
     
-    // assign the data to the cards
+    // NOTE: assign the data to the cards
     
     const newArray = data.map((item) => ({
         ...initialCardDimensions,
@@ -63,7 +63,8 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         setCards(updatedCards)
         setActiveCard(cardKey)
     }
-    // Animated styles for each card
+    
+    // NOTE: Animated styles for each card
     const animatedStyles = Object.keys(cards).reduce((acc, cardKey) => {
         acc[cardKey] = useSpring({
             to: { width: cards[cardKey[0]].width.toString(), height: cards[cardKey[0]].height.toString(), backgroundColor: bgColor },
@@ -72,6 +73,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         return acc
     }, {})
 
+    // NOTE: parent classNames of the animated cards
     const getCardClasses = (key) => {
         key = Number(key)
         switch (key) {
@@ -88,6 +90,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         }
     }
 
+    // NOTE: classNames for the disposition
     const getDisposition = (disposition) => {
         switch (disposition) {
             case "LeftRight":
