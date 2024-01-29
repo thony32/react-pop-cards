@@ -190,7 +190,7 @@ const Sandbox = () => {
                                 </label>
                             </div>
                         </div>
-                        <div className="text-xs text-justify">But for mobile devices "LeftRight" is set as TopBottom and "RightLeft" is set as BottomTop</div>
+                        <div className="text-xs text-justify">But for mobile devices "LeftRight" is set as "TopBottom" and "RightLeft" is set as "BottomTop"</div>
                     </div>
                     {/* for radius */}
                     <div className="space-y-3">
