@@ -26,6 +26,7 @@
         "core-js": "^3.35.1",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
+        "react-best-gradient-color-picker": "^3.0.5",
         "react-color": "^2.19.3",
         "react-dom": "^18.2.0",
         "react-responsive": "^9.0.2",

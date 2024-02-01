@@ -15,7 +15,7 @@ const ThemeChanger = () => {
     useEffect(() => {
         localStorage.getItem('theme') === 'false' ? setIsChecked(false) : setIsChecked(true)
         const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        console.log(systemTheme);
+        localStorage.setItem('sysTheme', systemTheme)
     }, [])
 
     return (
