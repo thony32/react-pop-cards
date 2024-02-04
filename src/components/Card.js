@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
-import PropTypes from "prop-types";
-import chroma from 'chroma-js';
+import PropTypes from "prop-types"
+import chroma from "chroma-js"
 
 const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const isMobile = useMediaQuery({ query: "(max-width: 640px)" })
@@ -108,10 +108,10 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     }
 
     // NOTE: text color according to bg color
-    const [textColor , setTextColor] = useState();
+    const [textColor, setTextColor] = useState()
     useEffect(() => {
-        const luminance = chroma(bgColor).luminance();
-        luminance < 0.5 ? setTextColor('#e5e5e5') : setTextColor('#1c2531');
+        const luminance = chroma(bgColor).luminance()
+        luminance < 0.5 ? setTextColor("#e5e5e5") : setTextColor("#1c2531")
     }, [bgColor])
 
     return (
