@@ -1,6 +1,6 @@
 const BuildFor = ({ bgColor }) => {
     return (
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 max-sm:hidden">
             <label style={{ color: bgColor }} className="text-xl font-fortnite duration-100">
                 Build for
             </label>

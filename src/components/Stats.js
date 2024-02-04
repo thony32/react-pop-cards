@@ -20,7 +20,7 @@ const Stats = ({ textColor }) => {
     }, [])
 
     return (
-        <div className="relative">
+        <div className="relative max-sm:absolute top-0 right-0 bottom-0 left-0">
             {npmStats && (
                 <>
                     <label style={{ color: textColor }} className="text-3xl font-fortnite">
