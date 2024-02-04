@@ -14,6 +14,7 @@ var _web = require("@react-spring/web");
 var _reactResponsive = require("react-responsive");
 require("../index.css");
 var _propTypes = _interopRequireDefault(require("prop-types"));
+var _chromaJs = _interopRequireDefault(require("chroma-js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && Object.prototype.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
@@ -132,6 +133,13 @@ const Card = _ref => {
         return "grid grid-cols-5 h-full";
     }
   };
+
+  // NOTE: text color according to bg color
+  const [textColor, setTextColor] = (0, _react.useState)();
+  (0, _react.useEffect)(() => {
+    const luminance = (0, _chromaJs.default)(bgColor).luminance();
+    luminance < 0.5 ? setTextColor('#e5e5e5') : setTextColor('#1c2531');
+  }, [bgColor]);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: getDisposition(disposition)
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -144,7 +152,11 @@ const Card = _ref => {
       key: key,
       className: getCardClasses(key),
       ref: parentCard
-    }, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_web.animated.div, {
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      style: {
+        color: textColor
+      }
+    }, /*#__PURE__*/_react.default.createElement(_web.animated.div, {
       ref: activeCard === value.title ? activeCardRef : null,
       style: animatedStyles[key],
       onClick: () => handleCardClick(value.title),
@@ -169,7 +181,7 @@ const Card = _ref => {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: key,
       onClick: () => handleCardClick(value.title),
-      className: "".concat(activeCard === value.title ? "scale-105 shadow-xl" : "scale-90", " ").concat(miniCardClass, " ").concat(isRounded ? "rounded-2xl" : "rounded-none")
+      className: "bg-base-100 ".concat(activeCard === value.title ? "scale-105 shadow-xl" : "scale-90", " ").concat(miniCardClass, " ").concat(isRounded ? "rounded-2xl" : "rounded-none")
     }, /*#__PURE__*/_react.default.createElement("label", {
       className: "text-center text-xs capitalize"
     }, value.title));
