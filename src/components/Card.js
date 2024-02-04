@@ -4,13 +4,14 @@ import React, { useEffect, useRef, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
 import "../index.css"
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+import chroma from 'chroma-js';
 
 const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
     const isMobile = useMediaQuery({ query: "(max-width: 640px)" })
     const activeCardRef = useRef(null)
     const parentCard = useRef(null)
-    
+
     // NOTE: default content div classes
     const cardDivClass = "col-span-3 flex justify-center items-center duration-100"
     const miniCardDivClass = "col-span-2 gap-4 flex justify-center items-center duration-100"
@@ -18,9 +19,9 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
 
     // Define card data
     const initialCardDimensions = { width: "6rem", height: "6rem" }
-    
+
     // NOTE: assign the data to the cards
-    
+
     const newArray = data.map((item) => ({
         ...initialCardDimensions,
         ...item,
@@ -63,7 +64,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         setCards(updatedCards)
         setActiveCard(cardKey)
     }
-    
+
     // NOTE: Animated styles for each card
     const animatedStyles = Object.keys(cards).reduce((acc, cardKey) => {
         acc[cardKey] = useSpring({
@@ -106,13 +107,20 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
         }
     }
 
+    // NOTE: text color according to bg color
+    const [textColor , setTextColor] = useState();
+    useEffect(() => {
+        const luminance = chroma(bgColor).luminance();
+        luminance < 0.5 ? setTextColor('#e5e5e5') : setTextColor('#1c2531');
+    }, [bgColor])
+
     return (
         <div className={getDisposition(disposition)}>
             <div className={(disposition === "LeftRight" ? "order-1" : "order-2") + ` ${cardDivClass}`}>
                 <div className="grid grid-cols-2 gap-2">
                     {Object.entries(cards).map(([key, value]) => (
                         <div key={key} className={getCardClasses(key)} ref={parentCard}>
-                            <div>
+                            <div style={{ color: textColor }}>
                                 <animated.div
                                     ref={activeCard === value.title ? activeCardRef : null}
                                     style={animatedStyles[key]}
@@ -134,7 +142,7 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
             </div>
             <div className={(disposition === "RightLeft" ? "order-1" : "order-2") + ` ${miniCardDivClass}`}>
                 {Object.entries(cards).map(([key, value]) => (
-                    <div key={key} onClick={() => handleCardClick(value.title)} className={`${activeCard === value.title ? "scale-105 shadow-xl" : "scale-90"} ${miniCardClass} ${isRounded ? "rounded-2xl" : "rounded-none"}`}>
+                    <div key={key} onClick={() => handleCardClick(value.title)} className={`bg-base-100 ${activeCard === value.title ? "scale-105 shadow-xl" : "scale-90"} ${miniCardClass} ${isRounded ? "rounded-2xl" : "rounded-none"}`}>
                         <label className="text-center text-xs capitalize">{value.title}</label>
                     </div>
                 ))}
