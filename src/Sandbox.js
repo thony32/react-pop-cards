@@ -8,6 +8,7 @@ import ColorPicker, { useColorPicker } from "react-best-gradient-color-picker"
 import BuildFor from "./components/BuildFor"
 import Stats from "./components/Stats"
 import getNpmPackage from "./services/npmService"
+import './scrollbar.css'
 
 const Sandbox = () => {
     const array = useMemo(
@@ -163,7 +164,7 @@ const Sandbox = () => {
                 </div>
             </div>
             <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-11 gap-[5%]">
-                <div className="col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
+                <div id="settings" className="col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
                     {/* for data */}
                     <div className="drawer">
                         <input id="my-drawer" type="checkbox" className="drawer-toggle" />
