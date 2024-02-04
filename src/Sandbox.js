@@ -334,7 +334,7 @@ const Sandbox = () => {
                     </svg>
                 </div>
             </footer>
-            <div className="absolute -left-[3%] bottom-[17%] -rotate-90">
+            <div className="absolute -left-[4%] bottom-[17%] -rotate-90">
                 <BuildFor bgColor={textColor} />
             </div>
         </div>
