@@ -1,8 +1,8 @@
 {
     "name": "react-pop-cards",
-    "version": "0.2.6",
+    "version": "0.3.0",
     "main": "dist/index.js",
-    "types": "dist/components/index.d.ts",
+    "types": "dist/index.d.ts",
     "module": "dist/index.js",
     "keywords": [
         "card",
@@ -12,6 +12,7 @@
     ],
     "files": [
         "dist",
+        "index.d.ts",
         "README.md"
     ],
     "repository": {
