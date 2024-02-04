@@ -1,13 +1,6 @@
-import React , { ReactNode } from "react";
-
-interface CardDataItem {
-  title: string;
-  description: string;
-  image?: string;
-}
-
+import React from "react";
 interface CardProps {
-  data: CardDataItem[];
+  data: any;
   bgColor?: string;
   disposition?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop";
   isRounded?: boolean;
