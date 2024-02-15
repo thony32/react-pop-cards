@@ -132,14 +132,14 @@ const Sandbox = () => {
 
     return (
         <>
-            <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative h-screen">
+            <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative lg:h-screen">
                 <div className="flex max-sm:flex-col justify-between">
                     <div className="space-y-3">
                         <h1 className="text-5xl text-center lg:text-7xl lg:text-left font-fortnite uppercase" style={{ color: textColor }}>
                             React pop cards
                         </h1>
                     </div>
-                    <div className="space-y-3 flex gap-8">
+                    <div className="space-y-3 flex max-sm:flex-col max-sm:items-center max-sm:gap-2 gap-8">
                         <div className="flex justify-center">
                             <div className="flex flex-col justify-center max-sm:scale-[.85]">
                                 <div className="flex justify-between items-center mb-2">
@@ -158,8 +158,8 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
-                <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-11 gap-[5%]">
-                    <div id="settings" className="col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
+                <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 xl:grid xl:grid-cols-11 gap-[5%]">
+                    <div id="settings" className="xl:col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
                         {/* for data */}
                         <div className="drawer">
                             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -264,9 +264,11 @@ const Sandbox = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-8 relative space-y-4">
-                        <div className="translate-y-[0%]">{<Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />}</div>
-                        <div className="w-full flex justify-center lg:absolute lg:bottom-0">
+                    <div className="xl:col-span-8 flex flex-col justify-between space-y-4">
+                        <div className="translate-y-[0%]">
+                            <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
+                        </div>
+                        <div className="w-full flex justify-center ">
                             <div>
                                 <h1 className="text-2xl font-fortnite mb-1">Code preview</h1>
                                 <div>
