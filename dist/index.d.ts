@@ -8,9 +8,12 @@ interface CardDataItem {
   description: string;
   image?: string;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   // Ajoutez d'autres propriétés si nécessaire
 >>>>>>> 2d59d5f (merge)
+=======
+>>>>>>> 50b671a (merge)
 }
 
 interface CardProps {
