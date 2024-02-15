@@ -131,150 +131,163 @@ const Sandbox = () => {
     }, [])
 
     return (
-        <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative h-screen">
-            <div className="space-y-3">
-                <h1 className="text-5xl text-center lg:text-7xl lg:text-left font-fortnite uppercase" style={{ color: textColor }}>
-                    React pop cards
-                </h1>
-            </div>
-            <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-11 gap-[5%]">
-                <div id="settings" className="col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
-                    {/* for data */}
-                    <div className="drawer">
-                        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-                        <div className="drawer-content">
-                            <div className="flex flex-col gap-3 max-sm:items-center items-start">
-                                <div>
-                                    <h1 className="text-2xl font-fortnite">Data (must be set) :</h1>
+        <>
+            <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative h-screen">
+                <div className="flex max-sm:flex-col justify-between">
+                    <div className="space-y-3">
+                        <h1 className="text-5xl text-center lg:text-7xl lg:text-left font-fortnite uppercase" style={{ color: textColor }}>
+                            React pop cards
+                        </h1>
+                    </div>
+                    <div className="space-y-3 flex gap-8">
+                        <div className="flex justify-center">
+                            <div className="flex flex-col justify-center max-sm:scale-[.85]">
+                                <div className="flex justify-between items-center mb-2">
+                                    <h1 className="text-2xl font-fortnite">Installation :</h1>
+                                    <ThemeChanger />
                                 </div>
-                                {/* Page content here */}
-                                <label htmlFor="my-drawer" className="btn btn-info drawer-button max-sm:w-full">
-                                    Set
+                                <div className="mockup-code w-[25.5rem]">
+                                    <pre data-prefix="$">
+                                        <ReactTyped strings={["npm install react-pop-cards", "yarn add react-pop-cards", "pnpm add react-pop-cards", "bun add react-pop-cards"]} typeSpeed={50} loop={true} />
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex">
+                            <Stats textColor={textColor} />
+                        </div>
+                    </div>
+                </div>
+                <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 grid grid-cols-11 gap-[5%]">
+                    <div id="settings" className="col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
+                        {/* for data */}
+                        <div className="drawer">
+                            <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                            <div className="drawer-content">
+                                <div className="flex flex-col gap-3 max-sm:items-center items-start">
+                                    <div>
+                                        <h1 className="text-2xl font-fortnite">Data (must be set) :</h1>
+                                    </div>
+                                    {/* Page content here */}
+                                    <label htmlFor="my-drawer" className="btn btn-info drawer-button max-sm:w-full">
+                                        Set
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="drawer-side z-50">
+                                <label htmlFor="my-drawer" className="drawer-overlay"></label>
+                                <div className="bg-base-100 h-screen p-2">
+                                    <h1 className="mb-1 sm:text-xl uppercase font-fortnite">Set data here like the example here :</h1>
+                                    <Editor height="50vh" width={`${isMobile ? "30vvw" : "50vh"}`} onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90" />
+                                    <div className="mt-2 space-y-4">
+                                        <p className="text-sm">Only 4 elements with different titles</p>
+                                        <div className="flex justify-end">
+                                            <button onClick={handleButtonClick} className="btn btn-info">
+                                                Set data
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/* for color */}
+                        <div className="space-y-3">
+                            <div>
+                                <h1 className="text-2xl font-fortnite">Color :</h1>
+                            </div>
+                            <div className="flex justify-center">
+                                <ColorPicker value={color} hideAdvancedSliders hidePresets hideOpacity hideColorTypeBtns hideGradientAngle hideGradientType hideInputType hideInputs onChange={setColor} />
+                            </div>
+                        </div>
+                        {/* for dispositon */}
+                        <div className="space-y-3">
+                            <div>
+                                <h1 className="text-2xl font-fortnite">Disposition (default : LeftRight)</h1>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className={`${isMobile ? "hidden" : "form-control"}`}>
+                                    <label className="label cursor-pointer space-x-5">
+                                        <span className="label-text">Left to right</span>
+                                        <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
+                                    </label>
+                                </div>
+                                <div className={`${isMobile ? "hidden" : "form-control"}`}>
+                                    <label className="label cursor-pointer space-x-5">
+                                        <span className="label-text">Right to left</span>
+                                        <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
+                                    </label>
+                                </div>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer space-x-5">
+                                        <span className="label-text">Top to bottom</span>
+                                        <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"} onChange={handleDispositionChange} />
+                                    </label>
+                                </div>
+                                <div className="form-control">
+                                    <label className="label cursor-pointer space-x-5">
+                                        <span className="label-text">Bottom to top</span>
+                                        <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"} onChange={handleDispositionChange} />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="text-xs text-justify">But for mobile devices "LeftRight" is set as "TopBottom" and "RightLeft" is set as "BottomTop"</div>
+                        </div>
+                        {/* for radius */}
+                        <div className="space-y-3">
+                            <div>
+                                <h1 className="text-2xl font-fortnite">Radius (default : false)</h1>
+                            </div>
+                            <div className="form-control">
+                                <label className="cursor-pointer label space-x-5">
+                                    <span className="label-text">Is Rounded</span>
+                                    <input type="checkbox" onClick={() => handleRadiusChange()} className="checkbox checkbox-info" />
                                 </label>
                             </div>
                         </div>
-                        <div className="drawer-side z-50">
-                            <label htmlFor="my-drawer" className="drawer-overlay"></label>
-                            <div className="bg-base-100 h-screen p-2">
-                                <h1 className="mb-1 sm:text-xl uppercase font-fortnite">Set data here like the example here :</h1>
-                                <Editor height="50vh" width={`${isMobile ? "30vvw" : "50vh"}`} onChange={handleEditorChange} options={editorOptions} defaultLanguage="json" theme="vs-dark" defaultValue={JSON.stringify(array, null, 2)} className="max-sm:scale-90" />
-                                <div className="mt-2 space-y-4">
-                                    <p className="text-sm">Only 4 elements with different titles</p>
-                                    <div className="flex justify-end">
-                                        <button onClick={handleButtonClick} className="btn btn-info">
-                                            Set data
-                                        </button>
+                        {/* for tension */}
+                        <div className="space-y-3">
+                            <div>
+                                <h1 className="text-2xl font-fortnite">Tension and friction (default tension: 120, default friction: 10)</h1>
+                            </div>
+                            <div className="flex max-sm:flex-col max-sm:items-start items-end gap-3">
+                                <div>
+                                    <label>Tension:</label>
+                                    <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
+                                </div>
+                                <div>
+                                    <label>Friction:</label>
+                                    <input type="number" value={tempFriction} placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
+                                </div>
+                                <button className="btn btn-info max-sm:w-full" onClick={setTensionAndFriction}>
+                                    Set
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-span-8 relative space-y-4">
+                        <div className="translate-y-[0%]">{<Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />}</div>
+                        <div className="w-full flex justify-center lg:absolute lg:bottom-0">
+                            <div>
+                                <h1 className="text-2xl font-fortnite mb-1">Code preview</h1>
+                                <div>
+                                    <div className="mockup-code">
+                                        <pre>
+                                            <code id="code" className="whitespace-pre-wrap">
+                                                {code}
+                                            </code>
+                                        </pre>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* for color */}
-                    <div className="space-y-3">
-                        <div>
-                            <h1 className="text-2xl font-fortnite">Color :</h1>
-                        </div>
-                        <div className="flex justify-center">
-                            <ColorPicker value={color} hideAdvancedSliders hidePresets hideOpacity hideColorTypeBtns hideGradientAngle hideGradientType hideInputType hideInputs onChange={setColor} />
-                        </div>
-                    </div>
-                    {/* for dispositon */}
-                    <div className="space-y-3">
-                        <div>
-                            <h1 className="text-2xl font-fortnite">Disposition (default : LeftRight)</h1>
-                        </div>
-                        <div className="grid grid-cols-2 gap-3">
-                            <div className={`${isMobile ? "hidden" : "form-control"}`}>
-                                <label className="label cursor-pointer space-x-5">
-                                    <span className="label-text">Left to right</span>
-                                    <input value={"LeftRight"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "LeftRight"} onChange={handleDispositionChange} />
-                                </label>
-                            </div>
-                            <div className={`${isMobile ? "hidden" : "form-control"}`}>
-                                <label className="label cursor-pointer space-x-5">
-                                    <span className="label-text">Right to left</span>
-                                    <input value={"RightLeft"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "RightLeft"} onChange={handleDispositionChange} />
-                                </label>
-                            </div>
-                            <div className="form-control">
-                                <label className="label cursor-pointer space-x-5">
-                                    <span className="label-text">Top to bottom</span>
-                                    <input value={"TopBottom"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "TopBottom"} onChange={handleDispositionChange} />
-                                </label>
-                            </div>
-                            <div className="form-control">
-                                <label className="label cursor-pointer space-x-5">
-                                    <span className="label-text">Bottom to top</span>
-                                    <input value={"BottomTop"} type="radio" name="radio-10" className="radio checked:bg-blue-500" checked={disposition === "BottomTop"} onChange={handleDispositionChange} />
-                                </label>
-                            </div>
-                        </div>
-                        <div className="text-xs text-justify">But for mobile devices "LeftRight" is set as "TopBottom" and "RightLeft" is set as "BottomTop"</div>
-                    </div>
-                    {/* for radius */}
-                    <div className="space-y-3">
-                        <div>
-                            <h1 className="text-2xl font-fortnite">Radius (default : false)</h1>
-                        </div>
-                        <div className="form-control">
-                            <label className="cursor-pointer label space-x-5">
-                                <span className="label-text">Is Rounded</span>
-                                <input type="checkbox" onClick={() => handleRadiusChange()} className="checkbox checkbox-info" />
-                            </label>
-                        </div>
-                    </div>
-                    {/* for tension */}
-                    <div className="space-y-3">
-                        <div>
-                            <h1 className="text-2xl font-fortnite">Tension and friction (default tension: 120, default friction: 10)</h1>
-                        </div>
-                        <div className="flex max-sm:flex-col max-sm:items-start items-end gap-3">
-                            <div>
-                                <label>Tension:</label>
-                                <input type="number" value={tempTension} placeholder="120" className="input input-bordered w-full max-w-xs" onChange={handleTensionChange} />
-                            </div>
-                            <div>
-                                <label>Friction:</label>
-                                <input type="number" value={tempFriction} placeholder="10" className="input input-bordered w-full max-w-xs" onChange={handleFrictionChange} />
-                            </div>
-                            <button className="btn btn-info max-sm:w-full" onClick={setTensionAndFriction}>
-                                Set
-                            </button>
-                        </div>
-                    </div>
                 </div>
-                <div className="col-span-8 relative space-y-4">
-                    <div className="translate-y-[0%]">{<Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />}</div>
-                    <div className="w-full flex justify-center lg:absolute lg:bottom-0">
-                        <div>
-                            <h1 className="text-2xl font-fortnite mb-1">Code preview</h1>
-                            <div>
-                                <div className="mockup-code">
-                                    <pre>
-                                        <code id="code" className="whitespace-pre-wrap">{code}</code>
-                                    </pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                <div className="absolute -left-[4%] bottom-[17%] -rotate-90">
+                    <BuildFor bgColor={textColor} />
                 </div>
             </div>
-            <div className="lg:absolute lg:-top-[5%] lg:right-[8%] space-y-3">
-                <div className="flex justify-center">
-                    <div className="flex flex-col justify-center max-sm:scale-[.85]">
-                        <div className="flex justify-between items-center mb-2">
-                            <h1 className="text-2xl font-fortnite">Installation :</h1>
-                            <ThemeChanger />
-                        </div>
-                        <div className="mockup-code w-[25.5rem]">
-                            <pre data-prefix="$">
-                                <ReactTyped strings={["npm install react-pop-cards", "pnpm add react-pop-cards", "bun add react-pop-cards", "yarn add react-pop-cards"]} typeSpeed={50} loop={true} />
-                            </pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <footer className="lg:absolute lg:left-0 lg:bottom-0 w-full py-3 px-[7%] bg-base-200/50 grid grid-cols-3">
+            <footer className="w-full py-3 px-[7%] bg-base-200/50 grid grid-cols-3">
                 <div className="flex gap-3 items-center justify-start">
                     <a className="hover:scale-110 duration-150 tooltip tooltip-right" data-tip="Project link" href="https://github.com/thony32/react-pop-cards" target="_blank" rel="noreferrer">
                         <svg className="w-7" viewBox="0 0 20 20">
@@ -323,13 +336,7 @@ const Sandbox = () => {
                     </svg>
                 </div>
             </footer>
-            <div className="absolute -left-[4%] bottom-[17%] -rotate-90">
-                <BuildFor bgColor={textColor} />
-            </div>
-            <div className="absolute bottom-[7%] right-6">
-                <Stats textColor={textColor} />
-            </div>
-        </div>
+        </>
     )
 }
 
