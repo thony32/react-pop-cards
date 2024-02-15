@@ -133,7 +133,7 @@ const Sandbox = () => {
     return (
         <>
             <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative lg:h-screen">
-                <div className="flex max-sm:flex-col justify-between">
+                <div className="flex max-sm:flex-col justify-between max-sm:gap-4">
                     <div className="space-y-3">
                         <h1 className="text-5xl text-center lg:text-7xl lg:text-left font-fortnite uppercase" style={{ color: textColor }}>
                             React pop cards
