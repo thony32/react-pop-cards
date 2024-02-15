@@ -132,7 +132,7 @@ const Sandbox = () => {
 
     return (
         <>
-            <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] relative lg:h-screen">
+            <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] lg:h-screen overflow-x-hidden">
                 <div className="flex max-sm:flex-col justify-between max-sm:gap-4">
                     <div className="space-y-3">
                         <h1 className="text-5xl text-center lg:text-7xl lg:text-left font-fortnite uppercase" style={{ color: textColor }}>
@@ -141,12 +141,12 @@ const Sandbox = () => {
                     </div>
                     <div className="space-y-3 flex max-sm:flex-col max-sm:items-center max-sm:gap-2 gap-8">
                         <div className="flex justify-center">
-                            <div className="flex flex-col justify-center max-sm:scale-[.85]">
+                            <div className="flex flex-col justify-center ">
                                 <div className="flex justify-between items-center mb-2">
                                     <h1 className="text-2xl font-fortnite">Installation :</h1>
                                     <ThemeChanger />
                                 </div>
-                                <div className="mockup-code w-[25.5rem]">
+                                <div className="mockup-code w-full xl:w-[25.5rem] ">
                                     <pre data-prefix="$">
                                         <ReactTyped strings={["npm install react-pop-cards", "yarn add react-pop-cards", "pnpm add react-pop-cards", "bun add react-pop-cards"]} typeSpeed={50} loop={true} />
                                     </pre>
@@ -268,7 +268,7 @@ const Sandbox = () => {
                         <div className="translate-y-[0%]">
                             <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
                         </div>
-                        <div className="w-full flex justify-center ">
+                        <div className="w-full flex justify-center w-full">
                             <div>
                                 <h1 className="text-2xl font-fortnite mb-1">Code preview</h1>
                                 <div>
