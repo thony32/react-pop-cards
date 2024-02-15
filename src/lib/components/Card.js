@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { useSpring, animated } from "@react-spring/web"
 import { useMediaQuery } from "react-responsive"
-import "../index.css"
+import "../../index.css"
 import PropTypes from "prop-types"
 import chroma from "chroma-js"
 

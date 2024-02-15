@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "./index.css"
-import Card from "./components/Card"
-// import Sandbox from "./Sandbox"
+// import Card from "./lib/components/Card"
+import Sandbox from "./Sandbox"
 
 const array = [
     {
