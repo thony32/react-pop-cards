@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 interface CardDataItem {
 <<<<<<< HEAD
     title: string
@@ -45,8 +46,11 @@ interface CardDataItem {
 >>>>>>> e678435 (merge)
 }
 
+=======
+import React from "react";
+>>>>>>> e85f642 (merge)
 interface CardProps {
-  data: CardDataItem[];
+  data: any;
   bgColor?: string;
 <<<<<<< HEAD
   disposition?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop";
