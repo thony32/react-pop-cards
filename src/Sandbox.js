@@ -6,6 +6,8 @@ import { ReactTyped } from "react-typed"
 import ThemeChanger from "./components/ThemeChanger"
 import ColorPicker, { useColorPicker } from "react-best-gradient-color-picker"
 import BuildFor from "./components/BuildFor"
+import Stats from "./components/Stats"
+import getNpmPackage from "./services/npmService"
 
 const Sandbox = () => {
     const array = useMemo(
@@ -116,6 +118,16 @@ const Sandbox = () => {
         }
         updateCode(disposition, bgColor, radius, tempTension, tempFriction)
     }, [hexString, bgColor, disposition, radius, tempFriction, tempTension, color])
+
+    // * get version
+    const [npmInfos, setNpminfos] = useState(null);
+    useEffect(() => {
+        const fetchNpmInfos = async () => {
+            const infos = await getNpmPackage({ type: "infos" });
+            setNpminfos(infos);
+        }
+        fetchNpmInfos();
+    }, [])
 
     return (
         <div className="space-y-[3%] px-[8%] py-[2%] relative h-screen">
@@ -306,9 +318,9 @@ const Sandbox = () => {
                         </svg>
                     </a>
                 </div>
-                <div style={{ color: textColor }} className="flex items-center justify-center font-fortnite duration-100">
-                    Decepticon , copyright {new Date().getFullYear()}
-                </div>
+                {npmInfos && (
+                    <div style={{ color: textColor }} className="flex items-center justify-center font-fortnite duration-100">Version {Object.keys(npmInfos.versions).reduce((a, b) => (a > b ? a : b))} , copyright {new Date().getFullYear()}</div>
+                )}
                 <div className="flex items-center justify-end gap-3">
                     <svg style={{ fill: textColor }} className="w-7 fill-current duration-100" viewBox="0 0 16 16" fill="none">
                         <path
@@ -336,6 +348,9 @@ const Sandbox = () => {
             </footer>
             <div className="absolute -left-[4%] bottom-[17%] -rotate-90">
                 <BuildFor bgColor={textColor} />
+            </div>
+            <div className="absolute bottom-[7%] right-6">
+                <Stats textColor={textColor} />
             </div>
         </div>
     )
