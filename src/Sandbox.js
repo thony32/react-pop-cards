@@ -1,13 +1,13 @@
-import Card from "./components/Card"
+import Card from "./lib/components/Card"
 import React, { useEffect, useState, useMemo } from "react"
 import Editor from "@monaco-editor/react"
 import { useMediaQuery } from "react-responsive"
 import { ReactTyped } from "react-typed"
-import ThemeChanger from "./components/ThemeChanger"
+import ThemeChanger from "./lib/components/ThemeChanger"
 import ColorPicker, { useColorPicker } from "react-best-gradient-color-picker"
-import BuildFor from "./components/BuildFor"
-import Stats from "./components/Stats"
-import getNpmPackage from "./services/npmService"
+import BuildFor from "./lib/components/BuildFor"
+import Stats from "./lib/components/Stats"
+import getNpmPackage from "./lib/services/npmService"
 import { Toaster, toast } from "react-hot-toast"
 
 const Sandbox = () => {

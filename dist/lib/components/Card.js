@@ -5,14 +5,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-require("core-js/modules/web.dom-collections.iterator.js");
+require("core-js/modules/es.symbol.description.js");
 require("core-js/modules/es.array.reduce.js");
 require("core-js/modules/es.regexp.to-string.js");
-require("core-js/modules/es.symbol.description.js");
+require("core-js/modules/web.dom-collections.iterator.js");
 var _react = _interopRequireWildcard(require("react"));
 var _web = require("@react-spring/web");
 var _reactResponsive = require("react-responsive");
-require("../index.css");
+require("../../index.css");
 var _propTypes = _interopRequireDefault(require("prop-types"));
 var _chromaJs = _interopRequireDefault(require("chroma-js"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
