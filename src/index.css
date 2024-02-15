@@ -6,3 +6,17 @@
     font-family: 'fortnite';
     src: url('/public/fortnite.otf') format('opentype');
 }
+
+/* //NOTE: Scrollbar design */
+.scrollbar::-webkit-scrollbar-track {
+    background-color: transparent !important;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px !important;
+    background-color: #afafaf !important;
+}

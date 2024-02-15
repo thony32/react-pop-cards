@@ -8,7 +8,7 @@ import ColorPicker, { useColorPicker } from "react-best-gradient-color-picker"
 import BuildFor from "./components/BuildFor"
 import Stats from "./components/Stats"
 import getNpmPackage from "./services/npmService"
-import "./scrollbar.css"
+import { Toaster, toast } from "react-hot-toast"
 
 const Sandbox = () => {
     const array = useMemo(
@@ -82,7 +82,7 @@ const Sandbox = () => {
         setCode(codeString)
     }
 
-    // editor options
+    // NOTE editor options
     const editorOptions = {
         minimap: {
             enabled: false,
@@ -120,7 +120,7 @@ const Sandbox = () => {
         updateCode(disposition, bgColor, radius, tempTension, tempFriction)
     }, [hexString, bgColor, disposition, radius, tempFriction, tempTension, color])
 
-    // * get version
+    // NOTE: get version
     const [npmInfos, setNpminfos] = useState(null)
     useEffect(() => {
         const fetchNpmInfos = async () => {
@@ -130,8 +130,26 @@ const Sandbox = () => {
         fetchNpmInfos()
     }, [])
 
+    // NOTE: Copy to clipboard
+    const copy = () => {
+        // Get the text from the element containing the code
+        const textToCopy = document.getElementById("code").innerText
+        // Use the Navigator clipboard API to copy the text
+        navigator.clipboard
+            .writeText(textToCopy)
+            .then(() => {
+                // This block is executed if the copy was successful
+                toast.success("Copied to clipboard")
+            })
+            .catch((err) => {
+                // This block is executed in case of an error
+                toast.error("Failed to copy text: " + err)
+            })
+    }
+
     return (
         <>
+            <Toaster position="bottom-right" reverseOrder={false} />
             <div className="space-y-[3%] px-[2%] lg:px-[8%] py-[2%] lg:h-screen overflow-x-hidden">
                 <div className="flex max-sm:flex-col justify-between max-sm:gap-4">
                     <div className="space-y-3">
@@ -159,7 +177,7 @@ const Sandbox = () => {
                     </div>
                 </div>
                 <div className="max-sm:flex max-sm:flex-col max-sm:gap-16 xl:grid xl:grid-cols-11 gap-[5%]">
-                    <div id="settings" className="xl:col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
+                    <div className="scrollbar xl:col-span-3 space-y-10 px-5 py-3 overflow-y-scroll h-[70vh]">
                         {/* for data */}
                         <div className="drawer">
                             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -268,7 +286,7 @@ const Sandbox = () => {
                         <div className="translate-y-[0%]">
                             <Card data={array} bgColor={bgColor} disposition={disposition} isRounded={radius} tension={tension} friction={friction} />
                         </div>
-                        <div className="w-full flex justify-center w-full">
+                        <div className="w-full flex justify-center">
                             <div>
                                 <h1 className="text-2xl font-fortnite mb-1">Code preview</h1>
                                 <div>
@@ -277,6 +295,20 @@ const Sandbox = () => {
                                             <code id="code" className="whitespace-pre-wrap">
                                                 {code}
                                             </code>
+                                            <button
+                                                className="absolute top-2 right-2 rounded-full bg-base-200 active:scale-90 duration-300"
+                                                onClick={copy}
+                                            >
+                                                <svg className="w-7 h-7 p-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8 5.00005C7.01165 5.00082 6.49359 5.01338 6.09202 5.21799C5.71569 5.40973 5.40973 5.71569 5.21799 6.09202C5 6.51984 5 7.07989 5 8.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.07989 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V8.2C19 7.07989 19 6.51984 18.782 6.09202C18.5903 5.71569 18.2843 5.40973 17.908 5.21799C17.5064 5.01338 16.9884 5.00082 16 5.00005M8 5.00005V7H16V5.00005M8 5.00005V4.70711C8 4.25435 8.17986 3.82014 8.5 3.5C8.82014 3.17986 9.25435 3 9.70711 3H14.2929C14.7456 3 15.1799 3.17986 15.5 3.5C15.8201 3.82014 16 4.25435 16 4.70711V5.00005M12 11H9M15 15H9"
+                                                        stroke="currentColor"
+                                                        strokeWidth={2}
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                            </button>
                                         </pre>
                                     </div>
                                 </div>
@@ -284,7 +316,6 @@ const Sandbox = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="absolute -left-[4%] bottom-[17%] -rotate-90">
                     <BuildFor bgColor={textColor} />
                 </div>
