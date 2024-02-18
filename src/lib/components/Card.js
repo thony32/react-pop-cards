@@ -125,14 +125,14 @@ const Card = ({ data, bgColor, disposition, isRounded, tension, friction }) => {
                                     ref={activeCard === value.title ? activeCardRef : null}
                                     style={animatedStyles[key]}
                                     onClick={() => handleCardClick(value.title)}
-                                    className={`${activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${isRounded ? " rounded-2xl" : " rounded-none"}`}
+                                    className={`${activeCard === value.title ? "max-sm:px-2 px-6 py-4" : "flex justify-center items-center"} cursor-pointer duration-100 ${isRounded ? " rounded-2xl" : " rounded-none"}`}
                                 >
                                     <div className={`${activeCard === value.title ? "min-h-full" : "max-sm:space-y-1 space-y-3"}`}>
                                         <div className="flex max-sm:flex-col-reverse justify-between items-center">
                                             <label className={(activeCard === value.title ? "max-sm:text-xl text-4xl" : "max-sm:text-xs text-base") + " capitalize font-bold duration-100"}>{value.title}</label>
-                                            {activeCard === value.title && value.image != null && <img className="max-sm:w-12 max-sm:h-12 w-20 h-20" src={value.image} alt="imageCard" />}
+                                            {activeCard === value.title && value.image != null && <img className="max-sm:w-8 max-sm:h-8 w-16 h-16" src={value.image} alt="imageCard" />}
                                         </div>
-                                        {activeCard === value.title && <p className="line-clamp-[8] text-justify max-sm:text-xs">{value.description}</p>}
+                                        {activeCard === value.title && <p className="line-clamp-[8] text-justify max-sm:text-[8px]">{value.description}</p>}
                                     </div>
                                 </animated.div>
                             </div>

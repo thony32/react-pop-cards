@@ -160,7 +160,7 @@ const Card = _ref => {
       ref: activeCard === value.title ? activeCardRef : null,
       style: animatedStyles[key],
       onClick: () => handleCardClick(value.title),
-      className: "".concat(activeCard === value.title ? "px-6 py-4" : "flex justify-center items-center", " cursor-pointer duration-100 ").concat(isRounded ? " rounded-2xl" : " rounded-none")
+      className: "".concat(activeCard === value.title ? "max-sm:px-2 px-6 py-4" : "flex justify-center items-center", " cursor-pointer duration-100 ").concat(isRounded ? " rounded-2xl" : " rounded-none")
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "".concat(activeCard === value.title ? "min-h-full" : "max-sm:space-y-1 space-y-3")
     }, /*#__PURE__*/_react.default.createElement("div", {
@@ -168,11 +168,11 @@ const Card = _ref => {
     }, /*#__PURE__*/_react.default.createElement("label", {
       className: (activeCard === value.title ? "max-sm:text-xl text-4xl" : "max-sm:text-xs text-base") + " capitalize font-bold duration-100"
     }, value.title), activeCard === value.title && value.image != null && /*#__PURE__*/_react.default.createElement("img", {
-      className: "max-sm:w-12 max-sm:h-12 w-20 h-20",
+      className: "max-sm:w-8 max-sm:h-8 w-16 h-16",
       src: value.image,
       alt: "imageCard"
     })), activeCard === value.title && /*#__PURE__*/_react.default.createElement("p", {
-      className: "line-clamp-[8] text-justify max-sm:text-xs"
+      className: "line-clamp-[8] text-justify max-sm:text-[8px]"
     }, value.description)))));
   }))), /*#__PURE__*/_react.default.createElement("div", {
     className: (disposition === "RightLeft" ? "order-1" : "order-2") + " ".concat(miniCardDivClass),
