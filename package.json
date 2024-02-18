@@ -1,6 +1,6 @@
 {
     "name": "react-pop-cards",
-    "version": "0.3.0",
+    "version": "1.0.2",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "module": "dist/index.js",
@@ -34,7 +34,7 @@
     },
     "scripts": {
         "dev": "react-scripts start",
-        "build": "rm -rf dist && NODE_ENV=production babel src/index.js --out-dir dist --copy-files && babel src/lib/components/Card.js --out-dir dist/lib/components --copy-files && postcss src/index.css -o dist/index.css",
+        "build": "rm -rf dist && NODE_ENV=production babel src/index.js --out-dir dist --copy-files && babel src/index.d.ts --out-dir dist --copy-files && babel src/lib/components/Card.js --out-dir dist/lib/components --copy-files && postcss src/index.css -o dist/index.css",
         "build:vercel": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

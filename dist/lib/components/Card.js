@@ -166,7 +166,7 @@ const Card = _ref => {
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "flex max-sm:flex-col-reverse justify-between items-center"
     }, /*#__PURE__*/_react.default.createElement("label", {
-      className: (activeCard === value.title ? "max-sm:text-xl text-5xl" : "max-sm:text-xs text-base") + " capitalize font-bold duration-100"
+      className: (activeCard === value.title ? "max-sm:text-xl text-4xl" : "max-sm:text-xs text-base") + " capitalize font-bold duration-100"
     }, value.title), activeCard === value.title && value.image != null && /*#__PURE__*/_react.default.createElement("img", {
       className: "max-sm:w-12 max-sm:h-12 w-20 h-20",
       src: value.image,
@@ -175,7 +175,10 @@ const Card = _ref => {
       className: "line-clamp-[8] text-justify max-sm:text-xs"
     }, value.description)))));
   }))), /*#__PURE__*/_react.default.createElement("div", {
-    className: (disposition === "RightLeft" ? "order-1" : "order-2") + " ".concat(miniCardDivClass)
+    className: (disposition === "RightLeft" ? "order-1" : "order-2") + " ".concat(miniCardDivClass),
+    style: {
+      color: textColor
+    }
   }, Object.entries(cards).map(_ref3 => {
     let [key, value] = _ref3;
     return /*#__PURE__*/_react.default.createElement("div", {
