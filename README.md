@@ -27,6 +27,7 @@ bun add react-pop-cards
 
 ```tsx
 import { Card } from "react-pop-cards";
+import "react-pop-cards/styles.css";
 
 const data = [
   {

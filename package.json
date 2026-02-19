@@ -12,7 +12,7 @@
             "import": "./dist/index.mjs",
             "require": "./dist/index.js"
         },
-        "./styles.css": "./dist/index.css"
+        "./styles.css": "./dist/styles.css"
     },
     "files": [
         "dist",
@@ -34,7 +34,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "vite",
-        "build": "tsup",
+        "build": "tsup && npx @tailwindcss/cli -i src/lib/styles.css -o dist/styles.css --minify",
         "build:vercel": "vite build",
         "typecheck": "tsc --noEmit",
         "preview": "vite preview",
@@ -45,18 +45,17 @@
     "peerDependencies": {
         "react": ">=19",
         "react-dom": ">=19",
-        "tailwindcss": ">=4",
         "typescript": ">=5",
         "vite": ">=7"
     },
     "dependencies": {
         "@react-spring/web": "^10.0.3",
-        "chroma-js": "^3.1.2",
-        "tailwindcss": "^4.2.0",
-        "@tailwindcss/vite": "^4.2.0"
+        "chroma-js": "^3.1.2"
     },
     "devDependencies": {
         "@biomejs/biome": "2.4.2",
+        "@tailwindcss/cli": "^4.2.0",
+        "@tailwindcss/vite": "^4.2.0",
         "@monaco-editor/react": "^4.7.0",
         "@types/chroma-js": "^3.1.2",
         "@types/node": "^25.3.0",
@@ -68,6 +67,7 @@
         "react": "^19.0.0",
         "react-best-gradient-color-picker": "^3.0.10",
         "react-dom": "^19.0.0",
+        "tailwindcss": "^4.2.0",
         "tsup": "^8.3.6",
         "typescript": "^5",
         "vite": "^7"
