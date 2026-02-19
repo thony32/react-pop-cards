@@ -19,6 +19,62 @@ interface CardProps {
     /** Spring animation friction (higher = more damped) */
     friction?: number;
 }
-declare function Card({ data, bgColor, disposition, isRounded, tension, friction }: CardProps): react_jsx_runtime.JSX.Element;
+declare function Card({ data, bgColor, disposition, isRounded, tension, friction }: Readonly<CardProps>): react_jsx_runtime.JSX.Element;
 
-export { Card, type CardItem, type CardProps };
+interface CardStackProps {
+    /** Array of card items to display */
+    data: CardItem[];
+    /** Background color of the cards (hex string) */
+    bgColor?: string;
+    /** Whether cards have rounded corners */
+    isRounded?: boolean;
+    /** Spring animation tension */
+    tension?: number;
+    /** Spring animation friction */
+    friction?: number;
+}
+declare function CardStack({ data, bgColor, isRounded, tension, friction }: Readonly<CardStackProps>): react_jsx_runtime.JSX.Element;
+
+interface CardCarouselProps {
+    /** Array of card items to display */
+    data: CardItem[];
+    /** Background color of the cards (hex string) */
+    bgColor?: string;
+    /** Whether cards have rounded corners */
+    isRounded?: boolean;
+    /** Spring animation tension */
+    tension?: number;
+    /** Spring animation friction */
+    friction?: number;
+}
+declare function CardCarousel({ data, bgColor, isRounded, tension, friction }: Readonly<CardCarouselProps>): react_jsx_runtime.JSX.Element;
+
+interface CardAccordionProps {
+    /** Array of card items to display */
+    data: CardItem[];
+    /** Background color of the cards (hex string) */
+    bgColor?: string;
+    /** Whether cards have rounded corners */
+    isRounded?: boolean;
+    /** Spring animation tension */
+    tension?: number;
+    /** Spring animation friction */
+    friction?: number;
+}
+declare function CardAccordion({ data, bgColor, isRounded, tension, friction }: Readonly<CardAccordionProps>): react_jsx_runtime.JSX.Element;
+
+interface CardFlipProps {
+    /** Array of card items to display */
+    data: CardItem[];
+    /** Background color of the cards (hex string) */
+    bgColor?: string;
+    /** Whether cards have rounded corners */
+    isRounded?: boolean;
+    /** Spring animation tension */
+    tension?: number;
+    /** Spring animation friction */
+    friction?: number;
+}
+declare function CardFlip({ data, bgColor, isRounded, tension, friction }: Readonly<CardFlipProps>): react_jsx_runtime.JSX.Element;
+
+export { Card, CardAccordion, type CardAccordionProps, CardCarousel, type CardCarouselProps, CardFlip, type CardFlipProps, type CardItem, type CardProps, CardStack, type CardStackProps };
