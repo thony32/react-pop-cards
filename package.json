@@ -1,6 +1,6 @@
 {
     "name": "react-pop-cards",
-    "version": "2.0.4",
+    "version": "2.1.0",
     "packageManager": "pnpm@10.30.0",
     "description": "Animated pop card component for React",
     "main": "dist/index.js",
