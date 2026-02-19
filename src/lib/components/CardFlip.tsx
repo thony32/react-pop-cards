@@ -1,15 +1,15 @@
 import { useSpring, animated } from '@react-spring/web'
-import chroma from 'chroma-js'
 import { useCallback, useMemo, useState } from 'react'
 import type { CardItem } from './Card'
 import { cn } from '../utils/cn'
+import { getTextColor, darkenColor, validateData } from '../utils/resolveColor'
 
 // ─── Types ──────────────────────────────────────────────────────────
 
 export interface CardFlipProps {
-    /** Array of card items to display */
+    /** Array of 2–10 card items to display */
     data: CardItem[]
-    /** Background color of the cards (hex string) */
+    /** Background color (hex, rgb, hsl, named color, or CSS variable e.g. `var(--primary)`) */
     bgColor?: string
     /** Whether cards have rounded corners */
     isRounded?: boolean
@@ -55,13 +55,7 @@ function FlipCard({
         setFlipped((prev) => !prev)
     }, [])
 
-    const backColor = useMemo(() => {
-        try {
-            return chroma(bgColor).darken(0.5).hex()
-        } catch {
-            return bgColor
-        }
-    }, [bgColor])
+    const backColor = useMemo(() => darkenColor(bgColor, 0.5), [bgColor])
 
     return (
         <div
@@ -117,15 +111,13 @@ function FlipCard({
 // ─── Component ──────────────────────────────────────────────────────
 
 export function CardFlip({ data, bgColor = DEFAULT_BG_COLOR, isRounded = false, tension = DEFAULT_TENSION, friction = DEFAULT_FRICTION }: Readonly<CardFlipProps>) {
-    const textColor = useMemo(() => {
-        try {
-            return chroma(bgColor).luminance() < 0.5 ? '#e5e5e5' : '#1c2531'
-        } catch {
-            return '#1c2531'
-        }
-    }, [bgColor])
+    const textColor = useMemo(() => getTextColor(bgColor), [bgColor])
 
     const cornerClass = isRounded ? 'rounded-2xl' : 'rounded-none'
+
+    if (!validateData(data, 'CardFlip')) {
+        return <div className="text-red-500 text-sm">Error: CardFlip requires 2–10 items (received {data.length})</div>
+    }
 
     return (
         <div className="grid grid-cols-2 gap-4 justify-items-center">

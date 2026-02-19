@@ -1,8 +1,8 @@
 import { animated, useSprings } from '@react-spring/web'
-import chroma from 'chroma-js'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useMediaQuery } from '../hooks/useMediaQuery'
 import { cn } from '../utils/cn'
+import { getTextColor, validateData } from '../utils/resolveColor'
 
 // ─── Types ──────────────────────────────────────────────────────────
 
@@ -13,9 +13,9 @@ export interface CardItem {
 }
 
 export interface CardProps {
-    /** Array of exactly 4 card items to display */
+    /** Array of 2–10 card items to display */
     data: CardItem[]
-    /** Background color of the cards (hex string) */
+    /** Background color (hex, rgb, hsl, named color, or CSS variable e.g. `var(--primary)`) */
     bgColor?: string
     /** Layout disposition for the card grid */
     disposition?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop'
@@ -37,13 +37,6 @@ const MINI_SIZE = { width: '6rem', height: '6rem' }
 const ACTIVE_SIZE = { width: '20rem', height: '20rem' }
 const ACTIVE_SIZE_MOBILE = { width: '11rem', height: '11rem' }
 
-const CARD_ALIGNMENT_CLASSES: Record<number, string> = {
-    0: 'flex justify-end items-end',
-    1: 'flex items-end',
-    2: 'flex justify-end',
-    3: 'flex'
-}
-
 // ─── Component ──────────────────────────────────────────────────────
 
 export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRight', isRounded = false, tension = DEFAULT_TENSION, friction = DEFAULT_FRICTION }: Readonly<CardProps>) {
@@ -53,13 +46,7 @@ export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRigh
     const [activeTitle, setActiveTitle] = useState(data[0]?.title ?? '')
 
     // Derive text color from background luminance
-    const textColor = useMemo(() => {
-        try {
-            return chroma(bgColor).luminance() < 0.5 ? '#e5e5e5' : '#1c2531'
-        } catch {
-            return '#1c2531'
-        }
-    }, [bgColor])
+    const textColor = useMemo(() => getTextColor(bgColor), [bgColor])
 
     // Compute sizes for each card
     const getSize = useCallback(
@@ -114,6 +101,10 @@ export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRigh
 
     const cornerClass = isRounded ? 'rounded-2xl' : 'rounded-none'
 
+    if (!validateData(data, 'Card')) {
+        return <div className="text-red-500 text-sm">Error: Card requires 2–10 items (received {data.length})</div>
+    }
+
     return (
         <div className={dispositionClass}>
             {/* Main card grid */}
@@ -121,9 +112,16 @@ export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRigh
                 <div className="grid grid-cols-2 gap-2">
                     {data.map((item, index) => {
                         const isActive = activeTitle === item.title
+                        const cols = 2
+                        const row = Math.floor(index / cols)
+                        const col = index % cols
+                        const isLastRow = row === Math.floor((data.length - 1) / cols)
+                        const justifyEnd = col === 0 ? 'justify-end' : 'justify-start'
+                        const alignEnd = isLastRow ? 'items-start' : 'items-end'
+                        const alignment = `flex ${justifyEnd} ${alignEnd}`
 
                         return (
-                            <div key={item.title} className={CARD_ALIGNMENT_CLASSES[index] ?? 'flex'}>
+                            <div key={item.title} className={alignment}>
                                 <div style={{ color: textColor }}>
                                     <animated.div
                                         ref={isActive ? activeCardRef : undefined}

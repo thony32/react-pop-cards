@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: "fortnite";
-    src: url("/public/fortnite.otf") format("opentype");
+    src: url("/fortnite.otf") format("opentype");
 }
 
 .font-fortnite {

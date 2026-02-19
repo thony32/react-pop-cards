@@ -2,18 +2,18 @@ import Editor from '@monaco-editor/react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import ColorPicker, { useColorPicker } from 'react-best-gradient-color-picker'
 import type { CardItem, CardProps } from '../../lib'
-import { Card, CardStack, CardCarousel, CardAccordion, CardFlip } from '../../lib'
+import { Card, CardStack, CardCarousel, CardAccordion, CardFlip, CardOrbit, CardTilt, CardMasonry, CardSpiral, CardWave } from '../../lib'
 import { useMediaQuery } from '../../lib/hooks/useMediaQuery'
 import { useToast } from '../components/Toast'
 
 // ─── Types ──────────────────────────────────────────────────────────
 
 type Disposition = CardProps['disposition']
-type VariantName = 'Card' | 'CardStack' | 'CardCarousel' | 'CardAccordion' | 'CardFlip'
+type VariantName = 'Card' | 'CardStack' | 'CardCarousel' | 'CardAccordion' | 'CardFlip' | 'CardOrbit' | 'CardTilt' | 'CardMasonry' | 'CardSpiral' | 'CardWave'
 
 // ─── Constants ──────────────────────────────────────────────────────
 
-const VARIANT_NAMES: VariantName[] = ['Card', 'CardStack', 'CardCarousel', 'CardAccordion', 'CardFlip']
+const VARIANT_NAMES: VariantName[] = ['Card', 'CardStack', 'CardCarousel', 'CardAccordion', 'CardFlip', 'CardOrbit', 'CardTilt', 'CardMasonry', 'CardSpiral', 'CardWave']
 
 const DEFAULT_DATA: CardItem[] = [
     { title: 'Design', description: 'Beautiful UI components with spring physics', image: 'https://placehold.co/600x400' },
@@ -124,6 +124,16 @@ export function PlaygroundSection() {
                 return <CardAccordion {...props} />
             case 'CardFlip':
                 return <CardFlip {...props} />
+            case 'CardOrbit':
+                return <CardOrbit {...props} />
+            case 'CardTilt':
+                return <CardTilt {...props} />
+            case 'CardMasonry':
+                return <CardMasonry {...props} />
+            case 'CardSpiral':
+                return <CardSpiral {...props} />
+            case 'CardWave':
+                return <CardWave {...props} />
         }
     }, [activeVariant, cardData, bgColor, disposition, isRounded, tension, friction])
 

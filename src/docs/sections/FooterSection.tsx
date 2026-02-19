@@ -53,13 +53,6 @@ export function FooterSection({ textColor }: Readonly<FooterSectionProps>) {
                 <div style={{ color: textColor }} className="text-sm font-fortnite duration-100 opacity-70">
                     {latestVersion && <>v{latestVersion} · </>}© {new Date().getFullYear()} react-pop-cards
                 </div>
-
-                {/* Tech badges */}
-                <div className="flex items-center gap-2 opacity-50">
-                    <span className="badge badge-sm">React</span>
-                    <span className="badge badge-sm">TypeScript</span>
-                    <span className="badge badge-sm">Tailwind</span>
-                </div>
             </div>
         </footer>
     )

@@ -1,15 +1,15 @@
 import { animated, useSprings } from '@react-spring/web'
-import chroma from 'chroma-js'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { CardItem } from './Card'
 import { cn } from '../utils/cn'
+import { getTextColor, validateData } from '../utils/resolveColor'
 
 // ─── Types ──────────────────────────────────────────────────────────
 
 export interface CardAccordionProps {
-    /** Array of card items to display */
+    /** Array of 2–10 card items to display */
     data: CardItem[]
-    /** Background color of the cards (hex string) */
+    /** Background color (hex, rgb, hsl, named color, or CSS variable e.g. `var(--primary)`) */
     bgColor?: string
     /** Whether cards have rounded corners */
     isRounded?: boolean
@@ -33,13 +33,7 @@ const EXPANDED_HEIGHT = 280
 export function CardAccordion({ data, bgColor = DEFAULT_BG_COLOR, isRounded = false, tension = DEFAULT_TENSION, friction = DEFAULT_FRICTION }: Readonly<CardAccordionProps>) {
     const [activeIndex, setActiveIndex] = useState(0)
 
-    const textColor = useMemo(() => {
-        try {
-            return chroma(bgColor).luminance() < 0.5 ? '#e5e5e5' : '#1c2531'
-        } catch {
-            return '#1c2531'
-        }
-    }, [bgColor])
+    const textColor = useMemo(() => getTextColor(bgColor), [bgColor])
 
     const cornerClass = isRounded ? 'rounded-2xl' : 'rounded-none'
 
@@ -60,6 +54,10 @@ export function CardAccordion({ data, bgColor = DEFAULT_BG_COLOR, isRounded = fa
     const handleClick = useCallback((index: number) => {
         setActiveIndex(index)
     }, [])
+
+    if (!validateData(data, 'CardAccordion')) {
+        return <div className="text-red-500 text-sm">Error: CardAccordion requires 2–10 items (received {data.length})</div>
+    }
 
     return (
         <div className="flex flex-col gap-2 w-full max-w-md mx-auto">
