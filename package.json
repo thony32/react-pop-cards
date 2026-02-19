@@ -51,12 +51,13 @@
     },
     "dependencies": {
         "@react-spring/web": "^10.0.3",
-        "chroma-js": "^3.1.2"
+        "chroma-js": "^3.1.2",
+        "tailwindcss": "^4.2.0",
+        "@tailwindcss/vite": "^4.2.0"
     },
     "devDependencies": {
         "@biomejs/biome": "2.4.2",
         "@monaco-editor/react": "^4.7.0",
-        "@tailwindcss/vite": "^4.2.0",
         "@types/chroma-js": "^3.1.2",
         "@types/node": "^25.3.0",
         "@types/react": "^19.0.0",
@@ -67,7 +68,6 @@
         "react": "^19.0.0",
         "react-best-gradient-color-picker": "^3.0.10",
         "react-dom": "^19.0.0",
-        "tailwindcss": "^4.2.0",
         "tsup": "^8.3.6",
         "typescript": "^5",
         "vite": "^7"
