@@ -1,0 +1,79 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.4.2/schema.json",
+    "vcs": {
+        "enabled": true,
+        "clientKind": "git",
+        "useIgnoreFile": true
+    },
+    "files": {
+        "includes": ["**", "!!**/dist"]
+    },
+    "formatter": {
+        "enabled": true,
+        "indentWidth": 4,
+        "lineWidth": 200,
+        "indentStyle": "space",
+        "lineEnding": "lf"
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "style": {
+                "noNonNullAssertion": "off"
+            },
+            "a11y": {
+                "noAriaUnsupportedElements": "off",
+                "useButtonType": "off",
+                "noStaticElementInteractions": "off",
+                "useKeyWithClickEvents": "off",
+                "noLabelWithoutControl": "off",
+                "noAutofocus": "off",
+                "useSemanticElements": "off",
+                "noSvgWithoutTitle": "off",
+                "useMediaCaption": "off",
+                "useIframeTitle": "off"
+            },
+            "recommended": true,
+            "correctness": {
+                "useExhaustiveDependencies": "off",
+                "useHookAtTopLevel": "off",
+                "useUniqueElementIds": "off"
+            },
+            "suspicious": {
+                "noExplicitAny": "off",
+                "noArrayIndexKey": "off",
+                "noThenProperty": "off",
+                "noAssignInExpressions": "off",
+                "noShadowRestrictedNames": "off",
+                "useIterableCallbackReturn": "off"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "off"
+            },
+            "complexity": {
+                "noBannedTypes": "off"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "trailingCommas": "none",
+            "semicolons": "asNeeded",
+            "arrowParentheses": "always",
+            "bracketSpacing": true,
+            "bracketSameLine": false,
+            "quoteStyle": "single",
+            "attributePosition": "auto"
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "organizeImports": "on"
+            }
+        }
+    }
+}
