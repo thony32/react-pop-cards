@@ -1,5 +1,5 @@
-const API_STATS = 'https://api.npmjs.org/downloads/point/last-week/react-pop-cards'
-const API_INFOS = 'https://registry.npmjs.org/react-pop-cards'
+const API_STATS = import.meta.env.VITE_API_STATS as string
+const API_INFOS = import.meta.env.VITE_API_INFOS as string
 
 // ─── Types ──────────────────────────────────────────────────────────
 

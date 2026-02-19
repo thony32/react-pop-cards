@@ -46,7 +46,7 @@ const CARD_ALIGNMENT_CLASSES: Record<number, string> = {
 
 // ─── Component ──────────────────────────────────────────────────────
 
-export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRight', isRounded = false, tension = DEFAULT_TENSION, friction = DEFAULT_FRICTION }: CardProps) {
+export function Card({ data, bgColor = DEFAULT_BG_COLOR, disposition = 'LeftRight', isRounded = false, tension = DEFAULT_TENSION, friction = DEFAULT_FRICTION }: Readonly<CardProps>) {
     const isMobile = useMediaQuery('(max-width: 640px)')
     const activeCardRef = useRef<HTMLDivElement>(null)
 
