@@ -1,13 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Uncomment after you set up TailwindCSS */
+@import "tailwindcss";
+@plugin "daisyui";
 
 @font-face {
-    font-family: 'fortnite';
-    src: url('/public/fortnite.otf') format('opentype');
+    font-family: "fortnite";
+    src: url("/public/fortnite.otf") format("opentype");
 }
 
-/* //NOTE: Scrollbar design */
+.font-fornite {
+    font-family: fortnite, sans-serif !important;
+}
+
+/* Scrollbar design */
 .scrollbar::-webkit-scrollbar-track {
     background-color: transparent !important;
 }
